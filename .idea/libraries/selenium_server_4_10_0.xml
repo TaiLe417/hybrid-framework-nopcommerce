@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="selenium-server-4.10.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/lib/selenium-server-4.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/lib/testng-7.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
