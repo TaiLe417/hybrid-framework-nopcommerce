@@ -14,6 +14,10 @@ import java.util.Set;
 public class BasePage {
     private long longTimeout = 30;
 
+    public static BasePage getBasePageObject() {
+        return new BasePage();
+    }
+
     public void openPageUrl(WebDriver driver, String url) {
         driver.get(url);
     }
@@ -95,15 +99,15 @@ public class BasePage {
         driver.switchTo().window(parentID);
     }
 
-    public By getByXpath(String locator) {
+    private By getByXpath(String locator) {
         return By.xpath(locator);
     }
 
-    public WebElement getElement(WebDriver driver, String locator) {
+    private WebElement getElement(WebDriver driver, String locator) {
         return driver.findElement(getByXpath(locator));
     }
 
-    public List<WebElement> getElements(WebDriver driver, String locator) {
+    private List<WebElement> getElements(WebDriver driver, String locator) {
         return driver.findElements(getByXpath(locator));
     }
 
@@ -292,5 +296,10 @@ public class BasePage {
     public void waitForAllElementsInvisible(WebDriver driver, String xpathLocator) {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, xpathLocator)));
+    }
+
+    public void waitForElementClickable(WebDriver driver, String xpathLocator) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator)));
     }
 }
