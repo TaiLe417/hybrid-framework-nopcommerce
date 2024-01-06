@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class User_TC01_Register extends BasePage {
+public class Level_02_Apply_BasePage extends BasePage {
     WebDriver driver;
     Faker faker;
     String projectPath = System.getProperty("user.dir");
