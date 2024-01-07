@@ -13,10 +13,9 @@ import pageObjects.RegisterPageObject;
 
 import java.time.Duration;
 
-public class Level_03_Page_Object extends BasePage {
+public class Level_03_Page_Object_01_Register extends BasePage {
     private WebDriver driver;
-    private Faker faker;
-    private String projectPath = System.getProperty("user.dir");
+    private final String projectPath = System.getProperty("user.dir");
     private String emailAddress, firstName, lastName, password;
     private HomePageObject homePageObject;
     private RegisterPageObject registerPageObject;
@@ -25,7 +24,8 @@ public class Level_03_Page_Object extends BasePage {
     @BeforeClass
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", projectPath + "\\hybrid-framework-nopcommerce\\browserDrivers\\chromedriver.exe");
-        faker = new Faker();
+        System.out.println(projectPath);
+        Faker faker = new Faker();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://demo.nopcommerce.com/");
@@ -40,13 +40,13 @@ public class Level_03_Page_Object extends BasePage {
 
     @Test
     public void TC01_Register_EmptyData() {
-        System.out.println("Step 1: Click Register");
+        System.out.println("TC01_Register Step 1: Click Register");
         homePageObject.clickRegisterLink();
 
-        System.out.println("Step 2: Click Register button");
+        System.out.println("TC01_Register Step 2: Click Register button");
         registerPageObject.clickRegisterButton();
 
-        System.out.println("Step 3: Verify error message displayed");
+        System.out.println("TC01_Register Step 3: Verify error message displayed");
         Assert.assertEquals(registerPageObject.getFirstNameErrorMessage(), "First name is required.");
         Assert.assertEquals(registerPageObject.getLastNameErrorMessage(), "Last name is required.");
         Assert.assertEquals(registerPageObject.getEmailErrorMessage(), "Email is required.");
@@ -56,50 +56,40 @@ public class Level_03_Page_Object extends BasePage {
 
     @Test
     public void TC02_Register_Invalid() {
-        System.out.println("Step 1: Click Register");
+        System.out.println("TC02_Register Step 1: Click Register");
         homePageObject.clickRegisterLink();
 
-        System.out.println("Step 2: Input data into textbox");
+        System.out.println("TC02_Register Step 2: Input data into textbox");
         registerPageObject.inputToFirstNameTextbox(firstName);
         registerPageObject.inputToLastNameTextbox(lastName);
         registerPageObject.inputToEmailTextbox("jghsg@ghr.lkknu11");
         registerPageObject.inputToPasswordTextbox(password);
         registerPageObject.inputToConfirmPasswordTextbox(password);
 
-        System.out.println("Step 3: Click register button");
+        System.out.println("TC02_Register Step 3: Click register button");
         registerPageObject.clickRegisterButton();
 
-        System.out.println("Step 4: Verify email error message displayed");
+        System.out.println("TC02_Register Step 4: Verify email error message displayed");
         Assert.assertEquals(registerPageObject.getWrongEmailErrorMessage(), "Wrong email");
     }
 
     @Test
     public void TC03_Register_Valid() {
-        System.out.println("Step 1: Click Register");
+        System.out.println("TC03_Register Step 1: Click Register");
         homePageObject.clickRegisterLink();
 
-        System.out.println("Step 2: Input data into textbox");
+        System.out.println("TC03_Register Step 2: Input data into textbox");
         registerPageObject.inputToFirstNameTextbox(firstName);
         registerPageObject.inputToLastNameTextbox(lastName);
         registerPageObject.inputToEmailTextbox(emailAddress);
         registerPageObject.inputToPasswordTextbox(password);
         registerPageObject.inputToConfirmPasswordTextbox(password);
 
-        System.out.println("Step 3: Click register button");
+        System.out.println("TC03_Register Step 3: Click register button");
         registerPageObject.clickRegisterButton();
 
-        System.out.println("Step 4: Verify register success message displayed");
+        System.out.println("TC03_Register Step 4: Verify register success message displayed");
         Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
-
-//        waitForElementClickable(driver, "//a[@class='ico-register']");
-//        clickToElement(driver, "//a[@class='ico-register']");
-//        sendKeyToElement(driver, "//input[@id='FirstName']", faker.name().firstName());
-//        sendKeyToElement(driver, "//input[@id='LastName']", faker.name().lastName());
-//        sendKeyToElement(driver, "//input[@id='Email']", emailAddress);
-//        sendKeyToElement(driver, "//input[@id='Password']", "123456");
-//        sendKeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
-//        clickToElement(driver, "//button[@id='register-button']");
-//        Assert.assertEquals(getTextElement(driver, "//div[@class='result']"), "Your registration completed");
     }
 
     @Test
@@ -119,16 +109,6 @@ public class Level_03_Page_Object extends BasePage {
 
         System.out.println("Step 4: Verify mail already exists message displayed");
         Assert.assertEquals(registerPageObject.getEmailExistMessage(), "The specified email already exists");
-
-//        waitForElementClickable(driver, "//a[@class='ico-register']");
-//        clickToElement(driver, "//a[@class='ico-register']");
-//        sendKeyToElement(driver, "//input[@id='FirstName']", faker.name().firstName());
-//        sendKeyToElement(driver, "//input[@id='LastName']", faker.name().lastName());
-//        sendKeyToElement(driver, "//input[@id='Email']", emailAddress);
-//        sendKeyToElement(driver, "//input[@id='Password']", "123456");
-//        sendKeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
-//        clickToElement(driver, "//button[@id='register-button']");
-//        Assert.assertEquals(getTextElement(driver, "//div[contains(@class,'message-error')]"), "The specified email already exists");
     }
 
     @Test
@@ -143,20 +123,9 @@ public class Level_03_Page_Object extends BasePage {
         registerPageObject.inputToPasswordTextbox("123");
         registerPageObject.inputToConfirmPasswordTextbox("123");
 
-//        System.out.println("Step 3: Click register button");
-//        registerPageObject.clickRegisterButton();
 
         System.out.println("Step 3: Verify password error message displayed");
         Assert.assertEquals(registerPageObject.getPasswordErrorMessage(), "Password must meet the following rules:\nmust have at least 6 characters");
-
-//        waitForElementClickable(driver, "//a[@class='ico-register']");
-//        clickToElement(driver, "//a[@class='ico-register']");
-//        sendKeyToElement(driver, "//input[@id='FirstName']", faker.name().firstName());
-//        sendKeyToElement(driver, "//input[@id='LastName']", faker.name().lastName());
-//        sendKeyToElement(driver, "//input[@id='Email']", emailAddress);
-//        sendKeyToElement(driver, "//input[@id='Password']", "123");
-//        sendKeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
-//        Assert.assertEquals(getTextElement(driver, "//span[@id='Password-error']"), "Password must meet the following rules:\nmust have at least 6 characters");
     }
 
     @Test
@@ -177,15 +146,6 @@ public class Level_03_Page_Object extends BasePage {
         System.out.println("Step 4: Verify confirm password error message displayed");
         Assert.assertEquals(registerPageObject.getConfirmPassowrdErrorMessage(), "The password and confirmation password do not match.");
 
-//        waitForElementClickable(driver, "//a[@class='ico-register']");
-//        clickToElement(driver, "//a[@class='ico-register']");
-//        sendKeyToElement(driver, "//input[@id='FirstName']", faker.name().firstName());
-//        sendKeyToElement(driver, "//input[@id='LastName']", faker.name().lastName());
-//        sendKeyToElement(driver, "//input[@id='Email']", emailAddress);
-//        sendKeyToElement(driver, "//input[@id='Password']", "123456");
-//        sendKeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
-//        clickToElement(driver, "//button[@id='register-button']");
-//        Assert.assertEquals(getTextElement(driver, "//span[@id='ConfirmPassword-error']"), "The password and confirmation password do not match.");
     }
 
 
