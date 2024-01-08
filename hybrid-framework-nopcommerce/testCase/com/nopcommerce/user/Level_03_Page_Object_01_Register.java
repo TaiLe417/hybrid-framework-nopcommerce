@@ -51,7 +51,7 @@ public class Level_03_Page_Object_01_Register extends BasePage {
         Assert.assertEquals(registerPageObject.getLastNameErrorMessage(), "Last name is required.");
         Assert.assertEquals(registerPageObject.getEmailErrorMessage(), "Email is required.");
         Assert.assertEquals(registerPageObject.getPasswordErrorMessage(), "Password is required.");
-        Assert.assertEquals(registerPageObject.getConfirmPassowrdErrorMessage(), "Password is required.");
+        Assert.assertEquals(registerPageObject.getConfirmPasswordErrorMessage(), "Password is required.");
     }
 
     @Test
@@ -144,7 +144,7 @@ public class Level_03_Page_Object_01_Register extends BasePage {
         registerPageObject.clickRegisterButton();
 
         System.out.println("Step 4: Verify confirm password error message displayed");
-        Assert.assertEquals(registerPageObject.getConfirmPassowrdErrorMessage(), "The password and confirmation password do not match.");
+        Assert.assertEquals(registerPageObject.getConfirmPasswordErrorMessage(), "The password and confirmation password do not match.");
 
     }
 
