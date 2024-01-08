@@ -32,7 +32,7 @@ public class RegisterPageObject extends BasePage {
         return getTextElement(driver, RegisterPageUI.PASSWORD_ERROR_MESSAGE);
     }
 
-    public String getConfirmPassowrdErrorMessage() {
+    public String getConfirmPasswordErrorMessage() {
         return getTextElement(driver, RegisterPageUI.CONFIRM_PASSWORD_ERROR_MESSAGE);
     }
 
