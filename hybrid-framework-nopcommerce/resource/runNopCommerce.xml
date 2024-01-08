@@ -3,6 +3,7 @@
     <test name="Run on Chrome">
         <classes>
             <class name="com.nopcommerce.user.Level_03_Page_Object_01_Register"/>
+            <class name="com.nopcommerce.user.Level_03_Page_Object_02_Login"/>
         </classes>
     </test>
 </suite>
