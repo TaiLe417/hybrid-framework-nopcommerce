@@ -17,4 +17,14 @@ public class HomePageObject extends BasePage {
         clickToElement(driver, HomePageUI.REGISTER_LINK);
     }
 
+    public void clickLogInLink() {
+        waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
+        clickToElement(driver, HomePageUI.LOGIN_LINK);
+    }
+
+    public boolean isMyAccountDisplayed() {
+        waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
+        return isElementDisplayd(driver, HomePageUI.MY_ACCOUNT_LINK);
+    }
+
 }
