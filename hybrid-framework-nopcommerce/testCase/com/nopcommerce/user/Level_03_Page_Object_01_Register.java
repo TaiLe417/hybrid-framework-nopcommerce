@@ -13,7 +13,7 @@ import pageObjects.RegisterPageObject;
 
 import java.time.Duration;
 
-public class Level_03_Page_Object_01_Register extends BasePage {
+public class Level_03_Page_Object_01_Register {
     private WebDriver driver;
     private final String projectPath = System.getProperty("user.dir");
     private String emailAddress, firstName, lastName, password;
