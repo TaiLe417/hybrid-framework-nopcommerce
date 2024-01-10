@@ -12,8 +12,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="selenium-server-4.10.0" level="project" />
     <orderEntry type="library" name="datafaker-1.9.0" level="project" />
-    <orderEntry type="library" name="bcpkix-jdk15on-1.64" level="project" />
+    <orderEntry type="library" name="WebDriverManager" level="project" />
   </component>
 </module>
