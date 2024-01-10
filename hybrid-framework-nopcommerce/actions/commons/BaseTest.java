@@ -1,9 +1,11 @@
 package commons;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.time.Duration;
 
 public class BaseTest {
@@ -12,14 +14,11 @@ public class BaseTest {
 
     protected WebDriver getBrowserName(String browserName) {
         if (browserName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", projectPath + "\\hybrid-framework-nopcommerce\\browserDrivers\\chromedriver.exe");
-            driver = new ChromeDriver();
+            driver = WebDriverManager.chromedriver().create();
         } else if (browserName.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", projectPath + "\\hybrid-framework-nopcommerce\\browserDrivers\\geckodriver.exe");
-            driver = new FirefoxDriver();
+            driver = WebDriverManager.firefoxdriver().create();
         } else if (browserName.equals("edge")) {
-            System.setProperty("webdriver.edge.driver", projectPath + "\\hybrid-framework-nopcommerce\\browserDrivers\\msedgedriver.exe");
-            driver = new EdgeDriver();
+            driver = WebDriverManager.edgedriver().create();
         } else {
             throw new RuntimeException("Browser Name Invalid");
         }
