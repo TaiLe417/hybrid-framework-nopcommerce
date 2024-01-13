@@ -3,143 +3,157 @@ package com.nopcommerce.user;
 import commons.BaseTest;
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageFactory.LoginPageObject;
+import pageFactory.HomePageObject;
+import pageFactory.RegisterPageObject;
+
+import java.time.Duration;
 
 public class Level_05_Page_Factory extends BaseTest {
     private WebDriver driver;
-    private String emailAddress, firstName, lastName, password;
+    private String emailAddress, firstName, lastName, password, emailNotFound, unsuccessfulMessage;
     HomePageObject homePageObject;
     RegisterPageObject registerPageObject;
+    LoginPageObject loginPageObject;
 
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
         driver = getBrowserName(browserName);
-        homePageObject = new HomePageObject(driver);
-        registerPageObject = new RegisterPageObject(driver);
         Faker faker = new Faker();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.get("https://demo.nopcommerce.com/");
+
         emailAddress = faker.internet().emailAddress();
+        emailNotFound = faker.internet().emailAddress();
         firstName = faker.name().firstName();
         lastName = faker.name().lastName();
         password = "123456";
-    }
+        unsuccessfulMessage = "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect";
+        homePageObject = new HomePageObject(driver);
+        registerPageObject = new RegisterPageObject(driver);
+        loginPageObject = new LoginPageObject(driver);
 
-    @Test
-    public void Register_01_EmptyData() {
-        System.out.println("Register_01 Step 1: Click Register");
+        System.out.println("Pre-condition Step 1: Click Register link");
         homePageObject.clickRegisterLink();
 
-        System.out.println("Register_01 Step 2: Click Register button");
-        registerPageObject.clickRegisterButton();
-
-        System.out.println("Register_01 Step 3: Verify error message displayed");
-        Assert.assertEquals(registerPageObject.getFirstNameErrorMessage(), "First name is required.");
-        Assert.assertEquals(registerPageObject.getLastNameErrorMessage(), "Last name is required.");
-        Assert.assertEquals(registerPageObject.getEmailErrorMessage(), "Email is required.");
-        Assert.assertEquals(registerPageObject.getPasswordErrorMessage(), "Password is required.");
-        Assert.assertEquals(registerPageObject.getConfirmPasswordErrorMessage(), "Password is required.");
-    }
-
-    @Test
-    public void Register_02_Invalid() {
-        System.out.println("Register_02 Step 1: Click Register");
-        homePageObject.clickRegisterLink();
-
-        System.out.println("Register_02 Step 2: Input data into textbox");
-        registerPageObject.inputToFirstNameTextbox(firstName);
-        registerPageObject.inputToLastNameTextbox(lastName);
-        registerPageObject.inputToEmailTextbox("jghsg@ghr.lkknu11");
-        registerPageObject.inputToPasswordTextbox(password);
-        registerPageObject.inputToConfirmPasswordTextbox(password);
-
-        System.out.println("Register_02 Step 3: Click register button");
-        registerPageObject.clickRegisterButton();
-
-        System.out.println("Register_02 Step 4: Verify email error message displayed");
-        Assert.assertEquals(registerPageObject.getWrongEmailErrorMessage(), "Wrong email");
-    }
-
-    @Test
-    public void Register_03_Valid() {
-        System.out.println("Register_03 Step 1: Click Register");
-        homePageObject.clickRegisterLink();
-
-        System.out.println("Register_03 Step 2: Input data into textbox");
+        System.out.println("Pre-condition Step 2: Input data into textbox");
         registerPageObject.inputToFirstNameTextbox(firstName);
         registerPageObject.inputToLastNameTextbox(lastName);
         registerPageObject.inputToEmailTextbox(emailAddress);
         registerPageObject.inputToPasswordTextbox(password);
         registerPageObject.inputToConfirmPasswordTextbox(password);
 
-        System.out.println("Register_03 Step 3: Click register button");
+        System.out.println("Pre-condition Step 3: Click register button");
         registerPageObject.clickRegisterButton();
 
-        System.out.println("Register_03 Step 4: Verify register success message displayed");
+        System.out.println("Pre-condition Step 4: Verify register success message displayed");
         Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
+
+//        System.out.println("Pre-condition Step 5: Log out");
+//        Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
+
+//        loginPageObject = new pageObjects.LoginPageObject(driver);
     }
 
     @Test
-    public void Register_04_Exist() {
-        System.out.println("Register_04 Step 1: Click Register");
-        homePageObject.clickRegisterLink();
+    public void Login_01_EmptyData() {
+        System.out.println("Login_01 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
 
-        System.out.println("Register_04 Step 2: Input data into textbox");
-        registerPageObject.inputToFirstNameTextbox(firstName);
-        registerPageObject.inputToLastNameTextbox(lastName);
-        registerPageObject.inputToEmailTextbox(emailAddress);
-        registerPageObject.inputToPasswordTextbox(password);
-        registerPageObject.inputToConfirmPasswordTextbox(password);
+        System.out.println("Login_01 Step 2: Click log in button");
+        loginPageObject.clickLogInButton();
 
-        System.out.println("Register_04 Step 3: Click register button");
-        registerPageObject.clickRegisterButton();
-
-        System.out.println("Register_04 Step 4: Verify mail already exists message displayed");
-        Assert.assertEquals(registerPageObject.getEmailExistMessage(), "The specified email already exists");
+        System.out.println("Login_01 Step 3: Verify email error message displayed");
+        Assert.assertEquals(loginPageObject.getEmailErrorMessage(), "Please enter your email");
     }
 
     @Test
-    public void Register_05_PasswordLess6() {
-        System.out.println("Register_05 Step 1: Click Register");
-        homePageObject.clickRegisterLink();
+    public void Login_02_InvalidData() {
+        System.out.println("Login_02 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
 
-        System.out.println("Register_05 Step 2: Input data into textbox");
-        registerPageObject.inputToFirstNameTextbox(firstName);
-        registerPageObject.inputToLastNameTextbox(lastName);
-        registerPageObject.inputToEmailTextbox(emailAddress);
-        registerPageObject.inputToPasswordTextbox("123");
-        registerPageObject.inputToConfirmPasswordTextbox("123");
+        System.out.println("Login_02 Step 2: Input invalid mail");
+        loginPageObject.inputToEmailTextBox("lksjnkn@.mnjs.inc");
 
+        System.out.println("Login_02 Step 3: Click log in button");
+        loginPageObject.clickLogInButton();
 
-        System.out.println("Register_05 Step 3: Verify password error message displayed");
-        Assert.assertEquals(registerPageObject.getPasswordErrorMessage(), "Password must meet the following rules:\nmust have at least 6 characters");
+        System.out.println("Login_02 Step 4: Verify wrong email error message displayed");
+        Assert.assertEquals(loginPageObject.getEmailErrorMessage(), "Wrong email");
     }
 
     @Test
-    public void Register_06_ConfirmPasswordNotMatch() {
-        System.out.println("Register_06 Step 1: Click Register");
-        homePageObject.clickRegisterLink();
+    public void Login_03_EmailNotFound() {
+        System.out.println("Login_03 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
 
-        System.out.println("Register_06 Step 2: Input data into textbox");
-        registerPageObject.inputToFirstNameTextbox(firstName);
-        registerPageObject.inputToLastNameTextbox(lastName);
-        registerPageObject.inputToEmailTextbox(emailAddress);
-        registerPageObject.inputToPasswordTextbox(password);
-        registerPageObject.inputToConfirmPasswordTextbox("111");
+        System.out.println("Login_03 Step 2: Input mail unregister");
+        loginPageObject.inputToEmailTextBox(emailNotFound);
 
-        System.out.println("Register_06 Step 3: Click register button");
-        registerPageObject.clickRegisterButton();
+        System.out.println("Login_03 Step 3: Click log in button");
+        loginPageObject.clickLogInButton();
 
-        System.out.println("Register_06 Step 4: Verify confirm password error message displayed");
-        Assert.assertEquals(registerPageObject.getConfirmPasswordErrorMessage(), "The password and confirmation password do not match.");
-
+        System.out.println("Login_03 Step 4: Verify unsuccessful error message displayed");
+        Assert.assertEquals(loginPageObject.getUnsuccessfulErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
     }
 
+    @Test
+    public void Login_04_ExistEmailEmptyPassword() {
+        System.out.println("Login_04 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
+
+        System.out.println("Login_04 Step 2: Input mail");
+        loginPageObject.inputToEmailTextBox(emailAddress);
+
+        System.out.println("Login_04 Step 3: Click log in button");
+        loginPageObject.clickLogInButton();
+
+        System.out.println("Login_04 Step 4: Verify unsuccessful error message displayed");
+        Assert.assertEquals(loginPageObject.getUnsuccessfulErrorMessage(), unsuccessfulMessage);
+    }
+
+    @Test
+    public void Login_05_ExistEmailWrongPassword() {
+        System.out.println("Login_05 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
+
+        System.out.println("Login_05 Step 2: Input mail");
+        loginPageObject.inputToEmailTextBox(emailAddress);
+
+        System.out.println("Login_05 Step 3: Input password");
+        loginPageObject.inputToPasswordTextBox("123321");
+
+        System.out.println("Login_05 Step 2: Click log in button");
+        loginPageObject.clickLogInButton();
+
+        System.out.println("Login_05 Step 3: Verify unsuccessful error message displayed");
+        Assert.assertEquals(loginPageObject.getUnsuccessfulErrorMessage(), unsuccessfulMessage);
+    }
+
+    @Test
+    public void Login_06_ValidEmailPassword() {
+        System.out.println("Login_06 Step 1: Click log in link");
+        homePageObject.clickLogInLink();
+
+        System.out.println("Login_06 Step 2: Input mail");
+        loginPageObject.inputToEmailTextBox(emailAddress);
+
+        System.out.println("Login_06 Step 3: Input password");
+        loginPageObject.inputToPasswordTextBox(password);
+
+        System.out.println("Login_06 Step 4: Click log in button");
+        loginPageObject.clickLogInButton();
+
+        System.out.println("Login_06 Step 5: Verify login successful");
+        Assert.assertTrue(homePageObject.isMyAccountDisplayed());
+    }
 
     @AfterClass
     public void afterClass() {

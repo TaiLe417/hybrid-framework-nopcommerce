@@ -31,27 +31,27 @@ public class LoginPageObject extends BasePageFactory {
 
     public void clickLogInButton() {
         waitForElementClickable(driver, loginButton);
-        clickToElement(driver, loginButton);
+        clickToElement(loginButton);
     }
 
     public void inputToEmailTextBox(String emailAddress) {
         waitForElementVisible(driver, emailTextbox);
-        sendKeyToElement(driver, emailTextbox, emailAddress);
+        sendKeyToElement(emailTextbox, emailAddress);
     }
 
     public void inputToPasswordTextBox(String password) {
         waitForElementVisible(driver, passwordTextbox);
-        sendKeyToElement(driver, passwordTextbox, password);
+        sendKeyToElement(passwordTextbox, password);
     }
 
     public String getEmailErrorMessage() {
         waitForElementVisible(driver, emailErrorMessaage);
-        return getTextElement(driver, emailErrorMessaage);
+        return getTextElement(emailErrorMessaage);
     }
 
     public String getUnsuccessfulErrorMessage() {
         waitForElementVisible(driver, unsuccessfulErrorMessage);
-        return getTextElement(driver, unsuccessfulErrorMessage);
+        return getTextElement(unsuccessfulErrorMessage);
     }
 
 }

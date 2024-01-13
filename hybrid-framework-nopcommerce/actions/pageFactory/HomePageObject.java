@@ -25,16 +25,16 @@ public class HomePageObject extends BasePageFactory {
 
     public void clickRegisterLink() {
         waitForElementClickable(driver, registerLink);
-        clickToElement(driver, registerLink);
+        clickToElement(registerLink);
     }
 
     public void clickLogInLink() {
         waitForElementClickable(driver, loginLink);
-        clickToElement(driver, loginLink);
+        clickToElement( loginLink);
     }
 
     public boolean isMyAccountDisplayed() {
         waitForElementVisible(driver, myAccountLink);
-        return isElementDisplayed(driver, myAccountLink);
+        return isElementDisplayed( myAccountLink);
     }
 }

@@ -39,7 +39,7 @@ public class RegisterPageObject extends BasePageFactory {
     private WebElement emailError;
 
     @FindBy(id = "Password-error")
-    private WebElement PasswordError;
+    private WebElement passwordError;
 
     @FindBy(id = "ConfirmPassword-error")
     private WebElement confirmPasswordError;
@@ -58,43 +58,64 @@ public class RegisterPageObject extends BasePageFactory {
 
     public void clickRegisterButton() {
         waitForElementClickable(driver, registerButton);
-        clickToElement(driver, registerButton);
+        clickToElement(registerButton);
     }
 
     public void inputToFirstNameTextbox(String firstName) {
         waitForElementVisible(driver, firstNameTextbox);
-        sendKeyToElement(driver, firstNameTextbox, firstName);
+        sendKeyToElement(firstNameTextbox, firstName);
     }
 
     public void inputToLastNameTextbox(String lastName) {
         waitForElementVisible(driver, lastNameTextbox);
-        sendKeyToElement(driver, lastNameTextbox, lastName);
+        sendKeyToElement(lastNameTextbox, lastName);
     }
 
     public void inputToEmailTextbox(String emailAddress) {
         waitForElementVisible(driver, emailTextbox);
-        sendKeyToElement(driver, emailTextbox, emailAddress);
+        sendKeyToElement(emailTextbox, emailAddress);
     }
 
     public void inputToPasswordTextbox(String password) {
         waitForElementVisible(driver, passwordTextbox);
-        sendKeyToElement(driver, passwordTextbox, password);
+        sendKeyToElement(passwordTextbox, password);
     }
 
     public void inputToConfirmPasswordTextbox(String confirmPassword) {
         waitForElementVisible(driver, confirmPasswordTextbox);
-        sendKeyToElement(driver, confirmPasswordTextbox, confirmPassword);
+        sendKeyToElement(confirmPasswordTextbox, confirmPassword);
+    }
+
+    public String getFirstNameErrorMessage() {
+        return getTextElement(firstNameError);
+    }
+
+    public String getLastNameErrorMessage() {
+        return getTextElement(lastNameError);
+    }
+
+    public String getEmailErrorMessage() {
+        return getTextElement(emailError);
     }
 
     public String getWrongEmailErrorMessage() {
-        return getTextElement(driver, wrongEmailError);
+        return getTextElement(wrongEmailError);
     }
 
+    public String getPasswordErrorMessage() {
+        return getTextElement(passwordError);
+    }
+
+    public String getConfirmPasswordErrorMessage() {
+        return getTextElement(confirmPasswordError);
+    }
+
+
     public String getRegisterSuccessMessage() {
-        return getTextElement(driver, registerSuccessMessage);
+        return getTextElement(registerSuccessMessage);
     }
 
     public String getEmailExistMessage() {
-        return getTextElement(driver, emailExistMessage);
+        return getTextElement(emailExistMessage);
     }
 }

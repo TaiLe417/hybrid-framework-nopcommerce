@@ -124,20 +124,20 @@ public class BasePageFactory {
         explicitWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    protected void clickToElement(WebDriver driver, WebElement element) {
+    protected void clickToElement( WebElement element) {
         element.click();
     }
 
-    protected void sendKeyToElement(WebDriver driver, WebElement element, String textValue) {
+    protected void sendKeyToElement( WebElement element, String textValue) {
         element.clear();
         element.sendKeys(textValue);
     }
 
-    protected String getTextElement(WebDriver driver, WebElement element) {
+    protected String getTextElement(WebElement element) {
         return element.getText();
     }
 
-    protected boolean isElementDisplayed(WebDriver driver, WebElement element) {
+    protected boolean isElementDisplayed(WebElement element) {
         return element.isDisplayed();
     }
 
