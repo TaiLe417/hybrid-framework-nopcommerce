@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pageObjects.PageGeneratorManager;
 
 public class HomePageObject extends BasePageFactory {
     private WebDriver driver;
@@ -26,15 +27,19 @@ public class HomePageObject extends BasePageFactory {
     public void clickRegisterLink() {
         waitForElementClickable(driver, registerLink);
         clickToElement(registerLink);
+//        return new RegisterPageObject(driver);
+//        return PageGeneratorManager.getRegisterPage(driver);
     }
 
     public void clickLogInLink() {
         waitForElementClickable(driver, loginLink);
-        clickToElement( loginLink);
+        clickToElement(loginLink);
+//        return new LoginPageObject(driver);
+//        return PageGeneratorManager.getLoginPageObject(driver);
     }
 
     public boolean isMyAccountDisplayed() {
         waitForElementVisible(driver, myAccountLink);
-        return isElementDisplayed( myAccountLink);
+        return isElementDisplayed(myAccountLink);
     }
 }

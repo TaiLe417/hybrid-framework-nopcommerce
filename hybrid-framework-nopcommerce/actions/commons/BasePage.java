@@ -6,6 +6,11 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.AddressPageObject;
+import pageObjects.MyProductReviewPageObject;
+import pageObjects.PageGeneratorManager;
+import pageObjects.RewardPointPageObject;
+import pageUIs.BasePageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -136,7 +141,7 @@ public class BasePage {
     }
 
     protected void selectItemInCustomDropDown(WebDriver driver,
-                                           String xpathLocator, String dropdownMenu, String expectedItem) {
+                                              String xpathLocator, String dropdownMenu, String expectedItem) {
         getElement(driver, xpathLocator).click();
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         List<WebElement> speedDropdownItem = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(dropdownMenu)));
@@ -262,7 +267,6 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getElement(driver, locator));
     }
 
-
     protected String getElementValidationMessage(WebDriver driver, String locator) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getElement(driver, locator));
@@ -302,4 +306,23 @@ public class BasePage {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator)));
     }
+
+    public AddressPageObject openAddressPage(WebDriver driver) {
+        waitForElementClickable(driver, BasePageUI.ADDRESS_LINK);
+        clickToElement(driver, BasePageUI.ADDRESS_LINK);
+        return PageGeneratorManager.getAddressPageObject(driver);
+    }
+
+    public MyProductReviewPageObject openMyProductsReviewPage(WebDriver driver) {
+        waitForElementClickable(driver, BasePageUI.MY_PRODUCT_REVIEWS_LINK);
+        clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEWS_LINK);
+        return PageGeneratorManager.getMyProductReviewPageObject(driver);
+    }
+
+    public RewardPointPageObject openRewardPointPage(WebDriver driver) {
+        waitForElementClickable(driver, BasePageUI.REWARD_POINTS_LINK);
+        clickToElement(driver, BasePageUI.REWARD_POINTS_LINK);
+        return PageGeneratorManager.getRewardPointPageObject(driver);
+    }
+
 }

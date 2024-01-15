@@ -11,9 +11,10 @@ public class LoginPageObject extends BasePage {
         this.driver = drive;
     }
 
-    public void clickLogInButton() {
+    public HomePageObject clickLogInButton() {
         waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+        return new HomePageObject(driver);
     }
 
     public void inputToEmailTextBox(String emailAddress) {

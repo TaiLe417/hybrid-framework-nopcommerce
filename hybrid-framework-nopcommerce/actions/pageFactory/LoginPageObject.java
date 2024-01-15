@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pageObjects.PageGeneratorManager;
 
 public class LoginPageObject extends BasePageFactory {
     private WebDriver driver;
@@ -32,6 +33,8 @@ public class LoginPageObject extends BasePageFactory {
     public void clickLogInButton() {
         waitForElementClickable(driver, loginButton);
         clickToElement(loginButton);
+//        return new HomePageObject(driver);
+//        return PageGeneratorManager.getHomePageObject(driver);
     }
 
     public void inputToEmailTextBox(String emailAddress) {
