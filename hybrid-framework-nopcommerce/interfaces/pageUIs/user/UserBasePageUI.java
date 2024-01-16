@@ -1,6 +1,6 @@
-package pageUIs;
+package pageUIs.user;
 
-public class BasePageUI {
+public class UserBasePageUI {
     public static final String CUSTOMER_INFO_LINK = "//diXv[@class='listbox']//a[contains(text(),'Customer info')]";
     public static final String ADDRESS_LINK = "//div[@class='listbox']//a[contains(text(),'Addresses')]";
     public static final String ORDER_LINK = "//div[@class='listbox']//a[contains(text(),'Orders')]";
