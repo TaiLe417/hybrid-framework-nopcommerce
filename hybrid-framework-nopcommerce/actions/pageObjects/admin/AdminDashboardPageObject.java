@@ -13,6 +13,6 @@ public class AdminDashboardPageObject extends BasePage {
 
     public boolean isDashboardDisplayed(){
         waitForElementVisible(driver, AdminDashboardPageUI.DASHBOARD_HEADER);
-        return isElementDisplayd(driver, AdminDashboardPageUI.DASHBOARD_HEADER);
+        return isElementDisplayed(driver, AdminDashboardPageUI.DASHBOARD_HEADER);
     }
 }

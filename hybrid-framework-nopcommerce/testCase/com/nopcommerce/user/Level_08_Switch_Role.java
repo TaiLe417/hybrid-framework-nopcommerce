@@ -81,8 +81,6 @@ public class Level_08_Switch_Role extends BaseTest {
 
         adminDashboardPageObject = adminLoginPageObject.loginAsAdmin(adminEmailAddress, adminPassword);
         Assert.assertTrue(adminDashboardPageObject.isDashboardDisplayed());
-
-
     }
 
     @AfterClass
