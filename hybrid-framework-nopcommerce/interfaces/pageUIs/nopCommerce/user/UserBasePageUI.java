@@ -1,4 +1,4 @@
-package pageUIs.user;
+package pageUIs.nopCommerce.user;
 
 public class UserBasePageUI {
     public static final String CUSTOMER_INFO_LINK = "xpath=//div[@class='listbox']//a[contains(text(),'Customer info')]";
