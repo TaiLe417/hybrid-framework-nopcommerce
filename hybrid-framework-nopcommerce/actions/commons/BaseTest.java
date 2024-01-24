@@ -22,4 +22,19 @@ public class BaseTest {
         driver.get(GlobalConstants.USER_URL);
         return driver;
     }
+
+    protected WebDriver getBrowserName(String browserName, String url) {
+        if (browserName.equals("chrome")) {
+            driver = WebDriverManager.chromedriver().create();
+        } else if (browserName.equals("firefox")) {
+            driver = WebDriverManager.firefoxdriver().create();
+        } else if (browserName.equals("edge")) {
+            driver = WebDriverManager.edgedriver().create();
+        } else {
+            throw new RuntimeException("Browser Name Invalid");
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.get(url);
+        return driver;
+    }
 }

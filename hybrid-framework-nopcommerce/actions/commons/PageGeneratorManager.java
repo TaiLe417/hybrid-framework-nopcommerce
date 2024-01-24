@@ -1,9 +1,9 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.admin.AdminDashboardPageObject;
-import pageObjects.admin.AdminLoginPageObject;
-import pageObjects.user.*;
+import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
+import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.user.*;
 
 public class PageGeneratorManager {
 

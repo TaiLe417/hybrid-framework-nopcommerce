@@ -6,10 +6,10 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.user.UserAddressPageObject;
-import pageObjects.user.UserMyProductReviewPageObject;
-import pageObjects.user.UserRewardPointPageObject;
-import pageUIs.user.UserBasePageUI;
+import pageObjects.nopCommerce.user.UserAddressPageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
+import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageUIs.nopCommerce.user.UserBasePageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -105,7 +105,7 @@ public class BasePage {
 
     private By getByLocator(String locatorType) {
         By by = null;
-        System.out.println("Locator type = " + locatorType);
+//        System.out.println("Locator type = " + locatorType);
         if (locatorType.startsWith("id=") || locatorType.startsWith("ID=") || locatorType.startsWith("Id=")) {
             by = By.id(locatorType.substring(3));
         } else if (locatorType.startsWith("class=") || locatorType.startsWith("CLASS=") || locatorType.startsWith("Class=")) {
@@ -137,7 +137,7 @@ public class BasePage {
         return driver.findElement(getByLocator(locatorType));
     }
 
-    private List<WebElement> getElements(WebDriver driver, String locatorType) {
+    public List<WebElement> getElements(WebDriver driver, String locatorType) {
         return driver.findElements(getByLocator(locatorType));
     }
 
@@ -266,6 +266,16 @@ public class BasePage {
     public void moveToElement(WebDriver driver, String locatorType) {
         Actions actions = new Actions(driver);
         actions.moveToElement(getElement(driver, locatorType)).perform();
+    }
+
+    public void pressKeyToElement(WebDriver driver, String locatorType, Keys keys) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(getElement(driver, locatorType), keys).perform();
+    }
+
+    public void pressKeyToElement(WebDriver driver, String locatorType, Keys keys, String... dynamicValues) {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(getElement(driver, getDynamicLocator(locatorType, dynamicValues)), keys).perform();
     }
 
     public boolean areExpectedTextInInnerText(WebDriver driver, String textExpected) {
