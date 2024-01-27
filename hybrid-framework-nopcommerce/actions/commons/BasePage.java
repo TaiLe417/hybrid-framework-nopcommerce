@@ -171,7 +171,12 @@ public class BasePage {
 
     public void selectItemInDefaultDropDown(WebDriver driver, String locatorType, String textValue) {
         Select select = new Select(getElement(driver, locatorType));
-        select.selectByValue(textValue);
+        select.selectByVisibleText(textValue);
+    }
+
+    public void selectItemInDefaultDropDown(WebDriver driver, String locatorType, String textValue, String... dynamicValues) {
+        Select select = new Select(getElement(driver, getDynamicLocator(locatorType, dynamicValues)));
+        select.selectByVisibleText(textValue);
     }
 
     public String getSelectItemInDefaultDropDown(WebDriver driver, String locatorType) {
@@ -232,8 +237,22 @@ public class BasePage {
         }
     }
 
+    public void checkTheCheckBoxOrRadio(WebDriver driver, String locatorType, String... dynamicValues) {
+        WebElement element = getElement(driver, getDynamicLocator(locatorType, dynamicValues));
+        if (!element.isSelected()) {
+            element.click();
+        }
+    }
+
     public void unCheckTheCheckBoxOrRadio(WebDriver driver, String locatorType) {
         WebElement element = getElement(driver, locatorType);
+        if (element.isSelected()) {
+            element.click();
+        }
+    }
+
+    public void unCheckTheCheckBoxOrRadio(WebDriver driver, String locatorType, String... dynamicValues) {
+        WebElement element = getElement(driver, getDynamicLocator(locatorType, dynamicValues));
         if (element.isSelected()) {
             element.click();
         }
