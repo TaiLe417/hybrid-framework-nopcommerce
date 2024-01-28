@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageUIs.jQuery.uploadFile.BasePageJQuery;
 import pageUIs.nopCommerce.user.UserBasePageUI;
 
 import java.time.Duration;
@@ -355,6 +356,23 @@ public class BasePage {
         } else {
             return false;
         }
+    }
+
+    public boolean isImageLoaded(WebDriver driver, String locatorType, String... dynamicValues) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getElement(driver, getDynamicLocator(locatorType, dynamicValues)));
+        return status;
+    }
+
+    public void uploadFile(WebDriver driver, String... fileNames) {
+        //Dường dẫn thư mục upload File
+        String filePath = GlobalConstants.UPLOAD_FILE;
+        String fullName = "";
+        for (String file : fileNames) {
+            fullName = fullName + filePath + file + "\n";
+        }
+        fullName = fullName.trim();
+        getElement(driver, BasePageJQuery.UPLOAD_FILE).sendKeys(fullName);
     }
 
     public void waitForElementVisible(WebDriver driver, String locatorType) {
