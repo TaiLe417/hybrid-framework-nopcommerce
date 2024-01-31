@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Set;
 
 public class BasePage {
-    private long longTimeout = 30;
+    private final long longTimeout = GlobalConstants.LONG_TIMEOUT;
+    private final long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
 
     public static BasePage getBasePageObject() {
         return new BasePage();
@@ -263,6 +264,36 @@ public class BasePage {
         return getElement(driver, locatorType).isDisplayed();
     }
 
+    public boolean isElementUndisplayed(WebDriver driver, String locatorType) {
+        overrideImplicitTimeOut(driver, shortTimeout);
+        List<WebElement> elements = getElements(driver, locatorType);
+        overrideImplicitTimeOut(driver, longTimeout);
+        if (elements.size() == 0) {
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locatorType, String... dynamicValues) {
+        overrideImplicitTimeOut(driver, shortTimeout);
+        List<WebElement> elements = getElements(driver, getDynamicLocator(locatorType, dynamicValues));
+        overrideImplicitTimeOut(driver, longTimeout);
+        if (elements.size() == 0) {
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void overrideImplicitTimeOut(WebDriver driver, long timeOut) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
+    }
+
     public boolean isElementDisplayed(WebDriver driver, String locatorType, String... dynamicValues) {
         return getElement(driver, getDynamicLocator(locatorType, dynamicValues)).isDisplayed();
     }
@@ -398,6 +429,13 @@ public class BasePage {
     public void waitForElementInvisible(WebDriver driver, String locatorType) {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+    }
+
+    public void waitForElementUndisplayed(WebDriver driver, String locatorType) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeout));
+        overrideImplicitTimeOut(driver, shortTimeout);
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+        overrideImplicitTimeOut(driver, longTimeout);
     }
 
     public void waitForElementInvisible(WebDriver driver, String locatorType, String... dynamicValues) {

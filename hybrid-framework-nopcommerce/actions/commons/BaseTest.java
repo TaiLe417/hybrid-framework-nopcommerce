@@ -20,7 +20,7 @@ public class BaseTest {
         } else {
             throw new RuntimeException("Browser Name Invalid");
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.get(GlobalConstants.USER_URL);
         return driver;
     }
@@ -35,7 +35,7 @@ public class BaseTest {
         } else {
             throw new RuntimeException("Browser Name Invalid");
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.get(url);
         return driver;
     }
