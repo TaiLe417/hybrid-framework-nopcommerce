@@ -14,6 +14,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="datafaker-1.9.0" level="project" />
+    <orderEntry type="library" name="log4j (2)" level="project" />
     <orderEntry type="library" name="WebDriverManager" level="project" />
+    <orderEntry type="library" name="ReportNG" level="project" />
   </component>
 </module>
