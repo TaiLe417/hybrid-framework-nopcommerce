@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="log4j (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libLog4J/commons-codec-1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libLog4J/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libLog4J/log4j-1.2.16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
