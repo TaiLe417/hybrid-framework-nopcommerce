@@ -91,7 +91,6 @@ public class Level_14_Log_ReportNG extends BaseTest {
 
         log.info("Login - Step 06: Navigate to 'My Account page'");
         userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
-
     }
 
     @AfterClass
