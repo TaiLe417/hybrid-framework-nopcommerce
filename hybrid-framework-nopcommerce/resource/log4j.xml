@@ -11,7 +11,7 @@
     </appender>
 
     <appender name="logfile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="hybrid-framework-nopcommerce/scriptLogs/NopCommerce.txt" />
+        <param name="File" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.txt" />
         <!--    log sẽ được ghi đè khi value="false" -->
         <param name="Append" value="false" />
         <layout class="org.apache.log4j.PatternLayout">
@@ -20,7 +20,7 @@
     </appender>
 
     <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="hybrid-framework-nopcommerce/scriptLogs/NopCommerce.log" />
+        <param name="file" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.log" />
 <!--    log sẽ được ghi tiếp ở cuối tập tin khi value="true" -->
         <param name="append" value="true" />
         <param name="maxFileSize" value="10MB" />

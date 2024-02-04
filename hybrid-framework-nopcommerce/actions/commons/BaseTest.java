@@ -47,6 +47,10 @@ public class BaseTest {
         return driver;
     }
 
+    public WebDriver getDriverInstance(){
+        return this.driver;
+    }
+
     protected boolean verifyTrue(boolean condition) {
         boolean pass = true;
         try {
