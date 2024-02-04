@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="ReportNG">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libReportNG/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libReportNG/guice-3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libReportNG/reportng-1.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libReportNG/velocity-1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libReportNG/reportng-1.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
