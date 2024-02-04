@@ -17,5 +17,6 @@
     <orderEntry type="library" name="log4j (2)" level="project" />
     <orderEntry type="library" name="WebDriverManager" level="project" />
     <orderEntry type="library" name="ReportNG" level="project" />
+    <orderEntry type="library" name="ExtendV2" level="project" />
   </component>
 </module>
