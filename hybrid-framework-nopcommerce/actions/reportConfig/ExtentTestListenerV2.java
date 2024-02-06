@@ -11,13 +11,12 @@ public class ExtentTestListenerV2 implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-
     }
 
     @Override
     public void onFinish(ITestContext context) {
-//        ExtentManager.endTest();
-//        ExtentManager.getReporter().flush();
+//        ExtentManagerV5.endTest();
+//        ExtentManagerV5.getReporter().flush();
     }
 
     @Override
@@ -27,7 +26,7 @@ public class ExtentTestListenerV2 implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-//        ExtentManager.getTest().log(LogStatus.PASS, "Test Passed");
+//        ExtentManagerV5.getTest().log(LogStatus.PASS, "Test Passed");
     }
 
     @Override
@@ -35,12 +34,12 @@ public class ExtentTestListenerV2 implements ITestListener {
 //        Object testClass = result.getInstance();
 //        WebDriver webDriver = ((BaseTest) testClass).getDriverInstance();
 //        String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
-//        ExtentManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentManager.getTest().addBase64ScreenShot(base64Screenshot));
+//        ExtentManagerV5.getTest().log(LogStatus.FAIL, "Test Failed", ExtentManagerV5.getTest().addBase64ScreenShot(base64Screenshot));
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-//        ExtentManager.getTest().log(LogStatus.SKIP, "Test Skipped");
+//        ExtentManagerV5.getTest().log(LogStatus.SKIP, "Test Skipped");
     }
 
     @Override
