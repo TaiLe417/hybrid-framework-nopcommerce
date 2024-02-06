@@ -16,7 +16,9 @@
     <orderEntry type="library" name="datafaker-1.9.0" level="project" />
     <orderEntry type="library" name="log4j (2)" level="project" />
     <orderEntry type="library" name="WebDriverManager" level="project" />
-    <orderEntry type="library" name="ReportNG" level="project" />
     <orderEntry type="library" name="ExtendV2" level="project" />
+    <orderEntry type="library" name="ReportNG" level="project" />
+    <orderEntry type="library" name="reportng-1.1.4-sources" level="project" />
+    <orderEntry type="library" name="ExtentV5" level="project" />
   </component>
 </module>
