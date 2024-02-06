@@ -63,6 +63,5 @@ public class ExtentTestListenerV3 extends BaseTest implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 }
