@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="allure">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/allure-java-commons-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/allure-model-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/allure-testng-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/aspectjlib-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/aspectjrt-1.9.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/aspectjtools-1.9.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/aspectjweaver-1.9.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/bsh-2.0b6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/byte-buddy-1.8.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/commons-exec-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/jackson-annotations-2.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/jackson-core-2.9.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/jackson-databind-2.9.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/jcommander-1.72.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/joor-java-8-0.9.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/okhttp-3.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/okio-1.14.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libAllure/tika-core-1.20.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
