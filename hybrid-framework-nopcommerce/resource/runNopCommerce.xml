@@ -12,7 +12,8 @@
     <test name="Run on Firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.nopcommerce.user.Level_15_Allure"/>
+            <class name="com.nopcommerce.common.Common_01_Register_Cookie"/>
+            <class name="com.nopcommerce.user.Level_16_Share_Data_B"/>
         </classes>
     </test>
 </suite>

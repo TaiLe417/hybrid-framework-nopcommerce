@@ -406,6 +406,17 @@ public class BasePage {
         getElement(driver, BasePageJQuery.UPLOAD_FILE).sendKeys(fullName);
     }
 
+    public Set<Cookie> getAllCookies(WebDriver driver) {
+        return driver.manage().getCookies();
+    }
+
+    public void setCookies(WebDriver driver, Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        sleepInSecond(3);
+    }
+
     public void waitForElementVisible(WebDriver driver, String locatorType) {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locatorType)));
