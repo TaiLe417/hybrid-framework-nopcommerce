@@ -20,5 +20,6 @@
     <orderEntry type="library" name="ReportNG" level="project" />
     <orderEntry type="library" name="reportng-1.1.4-sources" level="project" />
     <orderEntry type="library" name="ExtentV5" level="project" />
+    <orderEntry type="library" name="allure" level="project" />
   </component>
 </module>
