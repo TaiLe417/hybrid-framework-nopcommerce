@@ -6,12 +6,23 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
 import java.time.Duration;
 
 public class BaseTest {
     private WebDriver driver;
     protected final Log log;
+
+    @BeforeSuite
+    public void deleteFileInReport() {
+        // Remove all file in ReportNG screenshot (image)
+//        deleteAllFileInFolder("reportNGImage");
+
+        // Remove all file in Allure attachment (json file)
+        deleteAllFileInFolder("allure-json");
+    }
 
     protected BaseTest() {
         log = LogFactory.getLog(getClass());
@@ -47,7 +58,7 @@ public class BaseTest {
         return driver;
     }
 
-    public WebDriver getDriverInstance(){
+    public WebDriver getDriverInstance() {
         return this.driver;
     }
 
@@ -92,5 +103,22 @@ public class BaseTest {
             Reporter.getCurrentTestResult().setThrowable(e);
         }
         return pass;
+    }
+
+    public void deleteAllFileInFolder(String folderName) {
+        try {
+            String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + "hybrid-framework-nopcommerce" + File.separator + folderName;
+            File file = new File(pathFolderDownload);
+            File[] listOfFiles = file.listFiles();
+            if (listOfFiles.length != 0) {
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
+                        new File(listOfFiles[i].toString()).delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
     }
 }
