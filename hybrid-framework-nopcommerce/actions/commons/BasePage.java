@@ -359,7 +359,13 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].click();", getElement(driver, locatorType));
     }
 
-    public void scrollToElement(WebDriver driver, String locatorType) {
+    public String getElementByJSXpath(WebDriver driver, String xpathLocator) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        xpathLocator = xpathLocator.replace("xpath=", "");
+        return (String) jsExecutor.executeScript("return $(document.evaluate(\"" + xpathLocator + "\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue).val()");
+    }
+
+    public void scrollToElementByJS(WebDriver driver, String locatorType) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(driver, locatorType));
     }
