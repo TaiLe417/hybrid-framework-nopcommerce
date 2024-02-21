@@ -11,6 +11,7 @@ import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 import pageUIs.jQuery.uploadFile.BasePageJQuery;
 import pageUIs.nopCommerce.user.UserBasePageUI;
+import pageUIs.nopCommerce.user.UserCustomerInfoPageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -214,6 +215,10 @@ public class BasePage {
 
     public String getAttributeValue(WebDriver driver, String locatorType, String attributeName) {
         return getElement(driver, locatorType).getAttribute(attributeName);
+    }
+
+    public String getAttributeValue(WebDriver driver, String locatorType, String attributeName, String... dynamicValues) {
+        return getElement(driver, getDynamicLocator(locatorType, dynamicValues)).getAttribute(attributeName);
     }
 
     public String getCssText(WebDriver driver, String locatorType, String propertyName) {
@@ -500,8 +505,8 @@ public class BasePage {
     }
 
     public BasePage openPageAtMyAccountByName(WebDriver driver, String pageName) {
-        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_MY_ACCPOUNT_LINK, pageName);
-        clickToElement(driver, UserBasePageUI.DYNAMIC_MY_ACCPOUNT_LINK, pageName);
+        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_MY_ACCOUNT_LINK, pageName);
+        clickToElement(driver, UserBasePageUI.DYNAMIC_MY_ACCOUNT_LINK, pageName);
         switch (pageName) {
             case "Customer info":
                 return PageGeneratorManager.getUserCustomerInfoPageObject(driver);
@@ -517,8 +522,76 @@ public class BasePage {
     }
 
     public void openPageAtMyAccountName(WebDriver driver, String pageName) {
-        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_MY_ACCPOUNT_LINK, pageName);
-        clickToElement(driver, UserBasePageUI.DYNAMIC_MY_ACCPOUNT_LINK, pageName);
+        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_MY_ACCOUNT_LINK, pageName);
+        clickToElement(driver, UserBasePageUI.DYNAMIC_MY_ACCOUNT_LINK, pageName);
     }
 
+    /**
+     * Enter to dynamic Textbox by ID
+     *
+     * @param driver
+     * @param textboxID
+     * @param value
+     */
+    public void inputToTextboxByID(WebDriver driver, String textboxID, String value) {
+        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+        sendKeyToElement(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);
+    }
+
+    /**
+     * Click to dynamic Button by text
+     *
+     * @param driver
+     * @param buttonText
+     */
+    public void clickToButtonByText(WebDriver driver, String buttonText) {
+        waitForElementClickable(driver, UserBasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+        clickToElement(driver, UserBasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+    }
+
+    /**
+     * Select dropdown by Name attribute
+     *
+     * @param driver
+     * @param dropDownAttributeName
+     * @param itemValue
+     */
+    public void selectToDropDownByName(WebDriver driver, String dropDownAttributeName, String itemValue) {
+        waitForElementClickable(driver, UserBasePageUI.DYNAMIC_DROPDOWN_BY_NAME, dropDownAttributeName);
+        selectItemInDefaultDropDown(driver, UserBasePageUI.DYNAMIC_DROPDOWN_BY_NAME, itemValue, dropDownAttributeName);
+    }
+
+    /**
+     * Click to Radio button by Label
+     *
+     * @param driver
+     * @param checkbox
+     */
+    public void clickToRadioButtonByLabel(WebDriver driver, String radiobutton) {
+        waitForElementClickable(driver, UserBasePageUI.DYNAMIC_RADIOBUTTON_BY_LABEL, radiobutton);
+        checkTheCheckBoxOrRadio(driver, UserBasePageUI.DYNAMIC_RADIOBUTTON_BY_LABEL, radiobutton);
+    }
+
+    /**
+     * Click to checkbox by Label
+     *
+     * @param driver
+     * @param checkboxLabelName
+     */
+    public void clickToCheckboxByLabel(WebDriver driver, String checkboxLabelName) {
+        waitForElementClickable(driver, UserBasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLabelName);
+        checkTheCheckBoxOrRadio(driver, UserBasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLabelName);
+    }
+
+    /**
+     * Get value in textbox by textboxID
+     *
+     * @param driver
+     * @param textboxID
+     * @return
+     */
+    public String getTextboxValueByID(WebDriver driver, String textboxID) {
+        waitForElementVisible(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+        return getAttributeValue(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID,"value" ,textboxID);
+    }
 }
