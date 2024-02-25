@@ -34,18 +34,12 @@ public class Level_15_ExtendV5_Screenshot extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserName(browserName);
         Faker faker = new Faker();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("https://demo.nopcommerce.com/");
 
         emailAddress = faker.internet().emailAddress();
         firstName = faker.name().firstName();
         lastName = faker.name().lastName();
         password = "123456";
         userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
-
-
-//        System.out.println("Pre-condition Step 5: Log out");
-//        Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
     }
 
     @Test
