@@ -4,6 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -46,11 +51,18 @@ public class BaseTest {
 
     protected WebDriver getBrowserName(String browserName, String url) {
         if (browserName.equals("chrome")) {
-            driver = WebDriverManager.chromedriver().create();
+            WebDriverManager.chromedriver().create();
+            ChromeOptions options = new ChromeOptions();
+            options.setAcceptInsecureCerts(true);
+            driver = new ChromeDriver(options);
         } else if (browserName.equals("firefox")) {
             driver = WebDriverManager.firefoxdriver().create();
+            FirefoxOptions options = new FirefoxOptions();
+            options.setAcceptInsecureCerts(true);
+//            driver = new FirefoxDriver(options);
         } else if (browserName.equals("edge")) {
-            driver = WebDriverManager.edgedriver().create();
+            WebDriverManager.edgedriver().create();
+            driver = new EdgeDriver();
         } else {
             throw new RuntimeException("Browser Name Invalid");
         }

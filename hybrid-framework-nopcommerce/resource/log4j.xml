@@ -4,49 +4,57 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="console" class="org.apache.log4j.ConsoleAppender">
-        <param name="Target" value="System.out" />
+        <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%d %p %c] - %m%n" />
+            <param name="ConversionPattern" value="[%d %p %c] - %m%n"/>
         </layout>
     </appender>
 
     <appender name="logfile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.txt" />
+        <param name="File" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.txt"/>
         <!--    log sẽ được ghi đè khi value="false" -->
-        <param name="Append" value="false" />
+        <param name="Append" value="false"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%d %p %c] - %m%n" />
+            <param name="ConversionPattern" value="[%d %p %c] - %m%n"/>
         </layout>
     </appender>
 
     <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.log" />
-<!--    log sẽ được ghi tiếp ở cuối tập tin khi value="true" -->
-        <param name="append" value="true" />
-        <param name="maxFileSize" value="10MB" />
-        <param name="maxBackupIndex" value="10" />
+        <param name="file" value="./hybrid-framework-nopcommerce/scriptLogs/NopCommerce.log"/>
+        <!--    log sẽ được ghi tiếp ở cuối tập tin khi value="true" -->
+        <param name="append" value="true"/>
+        <param name="maxFileSize" value="10MB"/>
+        <param name="maxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%d %p %c] - %m%n" />
+            <param name="ConversionPattern" value="[%d %p %c] - %m%n"/>
         </layout>
     </appender>
 
     <appender name="testng" class="commons.TestNGAppender">
-        <param name="Threshold" value="INFO" />
+        <param name="Threshold" value="INFO"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%d %p %c] - %m%n" />
+            <param name="ConversionPattern" value="[%d %p %c] - %m%n"/>
         </layout>
     </appender>
 
     <category name="com.nopcommerce.user">
-        <priority value="all" />
-        <appender-ref ref="console" />
-        <appender-ref ref="logfile" />
-        <appender-ref ref="file" />
-        <appender-ref ref="testng" />
+        <priority value="all"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="logfile"/>
+        <appender-ref ref="file"/>
+        <appender-ref ref="testng"/>
+    </category>
+
+    <category name="om.wordpress.posts.admin">
+        <priority value="all"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="logfile"/>
+        <appender-ref ref="file"/>
+        <appender-ref ref="testng"/>
     </category>
 
     <root>
-        <priority value="warn" />
+        <priority value="warn"/>
     </root>
 
 </log4j:configuration>
