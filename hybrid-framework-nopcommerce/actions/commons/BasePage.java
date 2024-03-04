@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageObjects.wordpress.UserHomePO;
 import pageUIs.jQuery.uploadFile.BasePageJQuery;
 import pageUIs.nopCommerce.user.UserBasePageUI;
 import pageUIs.nopCommerce.user.UserCustomerInfoPageUI;
@@ -565,7 +566,7 @@ public class BasePage {
      * Click to Radio button by Label
      *
      * @param driver
-     * @param checkbox
+//     * @param checkbox
      */
     public void clickToRadioButtonByLabel(WebDriver driver, String radiobutton) {
         waitForElementClickable(driver, UserBasePageUI.DYNAMIC_RADIOBUTTON_BY_LABEL, radiobutton);
@@ -592,6 +593,11 @@ public class BasePage {
      */
     public String getTextboxValueByID(WebDriver driver, String textboxID) {
         waitForElementVisible(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
-        return getAttributeValue(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID,"value" ,textboxID);
+        return getAttributeValue(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, "value", textboxID);
+    }
+
+    public UserHomePO openEndUserSite(WebDriver driver, String urlUser) {
+        openPageUrl(driver, urlUser);
+        return pageObjects.wordpress.PageGeneratorManager.getUserHomePage(driver);
     }
 }

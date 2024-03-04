@@ -1,4 +1,4 @@
-package pageUIs.wordpress.admin;
+package pageUIs.wordpress;
 
 public class AdminPostAddNewPageUI {
     public static final String TITLE_TEXTBOX = "xpath=//h1[contains(@class,'wp-block-post-title')]";

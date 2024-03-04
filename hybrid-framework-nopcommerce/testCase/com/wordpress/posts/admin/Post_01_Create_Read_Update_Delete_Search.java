@@ -4,11 +4,10 @@ import commons.BaseTest;
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.wordpress.admin.*;
+import pageObjects.wordpress.*;
 
 public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
     private WebDriver driver;
@@ -16,21 +15,27 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
     AdminDashboardPO adminDashboardPO;
     AdminPostSearchPO adminPostSearchPO;
     AdminPostAddNewPO adminPostAddNewPO;
+    UserHomePO userHomePO;
+    UserPostDetailPO userPostDetailPO;
     String adminUsername = "automation";
     String adminPassword = "automation";
     String postTitle;
     String postBody;
+    String authorName = "Automation";
     String searchPostUrl;
+    String urlAdmin, urlUser;
+    String currentDay = getToday();
     Faker faker = new Faker();
 
-    @Parameters({"browser", "urlAdmin"})
+    @Parameters({"browser", "urlAdmin", "urlUser"})
     @BeforeClass
-    public void beforeClass(String browserName, String url) {
-        postTitle = "Live Coding Title " + faker.number().randomDigit();
-        postBody = "Live Coding Body " + faker.number().randomDigit();
-
+    public void beforeClass(String browserName, String urlAdmin, String urlUser) {
+        postTitle = "Live Coding Title " + faker.number().randomNumber();
+        postBody = "Live Coding Body " + faker.number().randomNumber();
         log.info("Pre-condition - Step 01: Open browser and admin Url");
-        driver = getBrowserName(browserName, url);
+        this.urlAdmin = urlAdmin;
+        this.urlUser = urlUser;
+        driver = getBrowserName(browserName, urlAdmin);
         adminLoginPO = PageGeneratorManager.getAdminLoginPage(driver);
         log.info("Pre-condition - Step 02: Enter to Username textbox with value " + adminUsername);
         adminLoginPO.enterToUsernameTextbox(adminUsername);
@@ -64,14 +69,43 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
         adminPostAddNewPO.clickToPrePublishButton();
 
         log.info("Create Post - step 08: Post publish message is displayed");
-        verifyTrue(adminPostAddNewPO.isPostPublishMessageDisplayed("Post published."));
+        Assert.assertTrue(adminPostAddNewPO.isPostPublishMessageDisplayed("Post published."));
     }
 
     @Test
-    public void Post_02_Search_Post() {
+    public void Post_02_Search_And_View_Post() {
         log.info("Search - Step 01: Open 'Search Post' page");
         adminPostSearchPO = adminPostAddNewPO.openSearchPostPageUrl(searchPostUrl);
 
+        log.info("Search - Step 02: Enter to Search textbox");
+        adminPostSearchPO.enterToSearchTextBox(postTitle);
+
+        log.info("Search - Step 03: Click to 'Search Pots' button");
+        adminPostSearchPO.clickToSearchPostTextBox();
+
+        log.info("Search - Step 04: Verify Search table contains '" + postTitle + "'");
+        verifyTrue(adminPostSearchPO.isPostSearchTableDisplayed("title", postTitle));
+
+        log.info("Search - Step 05: Verify Search table contains '" + authorName + "'");
+        verifyTrue(adminPostSearchPO.isPostSearchTableDisplayed("author", authorName));
+
+        log.info("Search - Step 06: Open End user site ");
+        userHomePO = adminPostSearchPO.openEndUserSite(driver, urlUser);
+
+        log.info("Search - Step 07: Verify Post info displayed at Home Page");
+        verifyTrue(userHomePO.isPostInfoDisplayedWithTitle(postTitle));
+        verifyTrue(userHomePO.isPostInfoDisplayedWithBody(postTitle, postBody));
+        verifyTrue(userHomePO.isPostInfoDisplayedWithAuthor(postTitle, authorName));
+        verifyTrue(userHomePO.isPostInfoDisplayedWithDate(postTitle, currentDay));
+
+        log.info("Search - Step 08: Click to Post title");
+        userPostDetailPO = userHomePO.clickToPostTitle(postTitle);
+
+        log.info("Search - Step 09: Verify Post info displayed at Post detail Page");
+        verifyTrue(userPostDetailPO.isPostInfoDisplayedWithTitle(postTitle));
+        verifyTrue(userPostDetailPO.isPostInfoDisplayedWithBody(postTitle, postBody));
+        verifyTrue(userPostDetailPO.isPostInfoDisplayedWithAuthor(postTitle, authorName));
+        verifyTrue(userPostDetailPO.isPostInfoDisplayedWithDate(postTitle, currentDay));
     }
 
     @Test
@@ -89,7 +123,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
 
     }
 
-//    @AfterClass(alwaysRun = true)
+    //    @AfterClass(alwaysRun = true)
     public void afterClass() {
         closeBrowserDriver();
     }
