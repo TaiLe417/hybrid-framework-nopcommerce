@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageObjects.wordpress.AdminDashboardPO;
 import pageObjects.wordpress.UserHomePO;
 import pageUIs.jQuery.uploadFile.BasePageJQuery;
 import pageUIs.nopCommerce.user.UserBasePageUI;
@@ -157,6 +158,11 @@ public class BasePage {
         WebElement element = getElement(driver, locatorTypeType);
         element.clear();
         element.sendKeys(textValue);
+    }
+
+    public void clearValueInElementByPressKey(WebDriver driver, String locatorTypeType) {
+        WebElement element = getElement(driver, locatorTypeType);
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
 
     public void sendKeyToElement(WebDriver driver, String locatorTypeType, String textValue, String... dynamicValues) {
@@ -565,8 +571,7 @@ public class BasePage {
     /**
      * Click to Radio button by Label
      *
-     * @param driver
-//     * @param checkbox
+     * @param driver //     * @param checkbox
      */
     public void clickToRadioButtonByLabel(WebDriver driver, String radiobutton) {
         waitForElementClickable(driver, UserBasePageUI.DYNAMIC_RADIOBUTTON_BY_LABEL, radiobutton);
@@ -599,5 +604,10 @@ public class BasePage {
     public UserHomePO openEndUserSite(WebDriver driver, String urlUser) {
         openPageUrl(driver, urlUser);
         return pageObjects.wordpress.PageGeneratorManager.getUserHomePage(driver);
+    }
+
+    public AdminDashboardPO openAdminSite(WebDriver driver, String urlAdmin) {
+        openPageUrl(driver, urlAdmin);
+        return pageObjects.wordpress.PageGeneratorManager.getAdminDashboardPage(driver);
     }
 }

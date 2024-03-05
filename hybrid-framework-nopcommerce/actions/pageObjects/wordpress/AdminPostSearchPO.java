@@ -22,7 +22,7 @@ public class AdminPostSearchPO extends BasePage {
         sendKeyToElement(driver, AdminPostSearchPageUI.SEARCH_TEXTBOX, postTitle);
     }
 
-    public void clickToSearchPostTextBox() {
+    public void clickToSearchPostButton() {
         waitForElementClickable(driver, AdminPostSearchPageUI.SEARCH_BUTTON);
         clickToElement(driver, AdminPostSearchPageUI.SEARCH_BUTTON);
     }
@@ -33,4 +33,34 @@ public class AdminPostSearchPO extends BasePage {
         return isElementDisplayed(driver, AdminPostSearchPageUI.TABLE_ROW_INDEX_BY_HEADER_INDEX, String.valueOf(headerIndex), cellValue);
     }
 
+    public AdminPostAddNewPO clickToPostTitleLink(String postTitle) {
+        waitForElementClickable(driver, AdminPostSearchPageUI.TABLE_ROW_TITLE_DETAIL_BY_TITLE_NAME, postTitle);
+        clickToElement(driver, AdminPostSearchPageUI.TABLE_ROW_TITLE_DETAIL_BY_TITLE_NAME, postTitle);
+        return PageGeneratorManager.getAdminPostAddNewPage(driver);
+    }
+
+    public void selectPostCheckBoxByTitle(String editPostTitle) {
+        waitForElementClickable(driver, AdminPostSearchPageUI.ROW_CHECK_BOX_BY_TITLE_NAME, editPostTitle);
+        checkTheCheckBoxOrRadio(driver, AdminPostSearchPageUI.ROW_CHECK_BOX_BY_TITLE_NAME, editPostTitle);
+    }
+
+    public void selectTextItemInActionDropDown(String item) {
+        waitForElementClickable(driver, AdminPostSearchPageUI.ACTION_DROPDOWN);
+        selectItemInDefaultDropDown(driver, AdminPostSearchPageUI.ACTION_DROPDOWN, item);
+    }
+
+    public void clickApplyButton() {
+        waitForElementClickable(driver, AdminPostSearchPageUI.APPLY_BUTTON);
+        clickToElement(driver, AdminPostSearchPageUI.APPLY_BUTTON);
+    }
+
+    public boolean isMovedToTrashMessageDisplayed(String message) {
+        waitForElementVisible(driver, AdminPostSearchPageUI.MOVE_TO_TRASH_MESSAGE, message);
+        return isElementDisplayed(driver, AdminPostSearchPageUI.MOVE_TO_TRASH_MESSAGE, message);
+    }
+
+    public boolean isNoPostsFoundMessageDisplayed(String message) {
+        waitForElementVisible(driver, AdminPostSearchPageUI.NO_POSTS_FOUND_MESSAGE, message);
+        return isElementDisplayed(driver, AdminPostSearchPageUI.NO_POSTS_FOUND_MESSAGE, message);
+    }
 }
