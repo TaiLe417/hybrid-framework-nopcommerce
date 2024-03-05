@@ -45,7 +45,7 @@
         <appender-ref ref="testng"/>
     </category>
 
-    <category name="om.wordpress.posts.admin">
+    <category name="com.wordpress.posts.admin">
         <priority value="all"/>
         <appender-ref ref="console"/>
         <appender-ref ref="logfile"/>
