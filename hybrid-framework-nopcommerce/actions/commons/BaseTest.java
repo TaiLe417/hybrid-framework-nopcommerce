@@ -53,18 +53,21 @@ public class BaseTest {
 
     protected WebDriver getBrowserName(String browserName, String url) {
         if (browserName.equals("chrome")) {
-            WebDriverManager.chromedriver().create();
-            ChromeOptions options = new ChromeOptions();
-            options.setAcceptInsecureCerts(true);
-            driver = new ChromeDriver(options);
+            driver = WebDriverManager.chromedriver().create();
+//            WebDriverManager.chromedriver().create();
+//            ChromeOptions options = new ChromeOptions();
+//            options.setAcceptInsecureCerts(true);
+//            driver = new ChromeDriver(options);
         } else if (browserName.equals("firefox")) {
             driver = WebDriverManager.firefoxdriver().create();
-            FirefoxOptions options = new FirefoxOptions();
-            options.setAcceptInsecureCerts(true);
+//            driver = WebDriverManager.firefoxdriver().create();
+//            FirefoxOptions options = new FirefoxOptions();
+//            options.setAcceptInsecureCerts(true);
 //            driver = new FirefoxDriver(options);
         } else if (browserName.equals("edge")) {
-            WebDriverManager.edgedriver().create();
-            driver = new EdgeDriver();
+            driver = WebDriverManager.edgedriver().create();
+//            WebDriverManager.edgedriver().create();
+//            driver = new EdgeDriver();
         } else {
             throw new RuntimeException("Browser Name Invalid");
         }
