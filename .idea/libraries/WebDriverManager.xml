@@ -1,17 +1,18 @@
 <component name="libraryTable">
   <library name="WebDriverManager">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/bcpkix-jdk15on-1.64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/bcprov-jdk15on-1.64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-compress-1.21.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-io-2.6.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-lang3-3.12.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/bcpkix-jdk18on-1.76.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/bcprov-jdk18on-1.76.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/bcutil-jdk18on-1.76.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-compress-1.26.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-io-2.15.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/commons-lang3-3.14.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/dec-0.1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-3.3.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-api-3.3.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-core-3.3.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-transport-3.3.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-transport-httpclient5-3.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-3.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-api-3.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-core-3.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-transport-3.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/docker-java-transport-httpclient5-3.3.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/gson-2.10.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/guava-19.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/httpclient5-5.2.1.jar!/" />
@@ -20,9 +21,10 @@
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-annotations-2.10.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-core-2.10.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-databind-2.10.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jna-5.12.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/slf4j-api-2.0.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/webdrivermanager-5.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jcl-over-slf4j-1.7.30.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jna-5.13.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/slf4j-api-2.0.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/webdrivermanager-5.7.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
