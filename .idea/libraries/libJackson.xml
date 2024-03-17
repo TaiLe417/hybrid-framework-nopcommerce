@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libJackson">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/hybrid-framework-nopcommerce/libJackson" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/hybrid-framework-nopcommerce/libJackson" recursive="false" />
+  </library>
+</component>
