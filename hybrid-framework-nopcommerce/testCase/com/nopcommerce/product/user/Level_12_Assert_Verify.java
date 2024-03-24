@@ -1,4 +1,4 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 import commons.BaseTest;
 import commons.PageGeneratorManager;
@@ -13,7 +13,7 @@ import pageObjects.nopCommerce.user.*;
 
 import java.time.Duration;
 
-public class Level_15_ReportNG_Screenshot extends BaseTest {
+public class Level_12_Assert_Verify extends BaseTest {
     private WebDriver driver;
     private String emailAddress, firstName, lastName, password;
     private UserHomePageObject userHomePageObject;
@@ -46,51 +46,37 @@ public class Level_15_ReportNG_Screenshot extends BaseTest {
 
     @Test
     public void User_01_Register() {
-        log.info("Register - Step 01: Navigate to 'Register' page");
+        System.out.println("Pre-condition Step 1: Click Register link");
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
-        log.info("Register - Step 02: Enter the Firstname textbox with value is '" + firstName + "'");
+        System.out.println("Pre-condition Step 2: Input data into textbox");
         userRegisterPageObject.inputToFirstNameTextbox(firstName);
-
-        log.info("Register - Step 03: Enter the Lastname textbox with value is '" + lastName + "'");
         userRegisterPageObject.inputToLastNameTextbox(lastName);
-
-        log.info("Register - Step 04: Enter the Email textbox with value is '" + emailAddress + "'");
         userRegisterPageObject.inputToEmailTextbox(emailAddress);
-
-        log.info("Register - Step 05: Enter the Password textbox with value is '" + password + "'");
         userRegisterPageObject.inputToPasswordTextbox(password);
-
-        log.info("Register - Step 06: Enter the Confirm Password textbox with value is '" + password + "'");
         userRegisterPageObject.inputToConfirmPasswordTextbox(password);
 
-        log.info("Register - Step 07: Click to 'Register button'");
+        System.out.println("Pre-condition Step 3: Click register button");
         userRegisterPageObject.clickRegisterButton();
 
-        log.info("Register - Step 08: Verify register success message is displayed");
-        Assert.assertEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed.");
+        System.out.println("Pre-condition Step 4: Verify register success message displayed");
+        verifyEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed.");
 
-    }
-
-    @Test
-    public void User_02_Login() {
-
-        log.info("Login - Step 01:  Navigate to Login page");
+        System.out.println("Login Step 1: Click log in link");
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
-        log.info("Login - Step 02: enter the Email textbox with value is '" + emailAddress + "'");
+        System.out.println("Login Step 2: Input mail");
         userLoginPageObject.inputToEmailTextBox(emailAddress);
 
-        log.info("Login - Step 03: enter the Password textbox with value is '" + password + "'");
+        System.out.println("Login Step 3: Input password");
         userLoginPageObject.inputToPasswordTextBox(password);
 
-        log.info("Login - Step 04: Click Log In button");
+        System.out.println("Login Step 4: Click log in button");
         userHomePageObject = userLoginPageObject.clickLogInButton();
 
-        log.info("Login - Step 05: Verify 'My Account' link is displayed");
-        Assert.assertFalse(userHomePageObject.isMyAccountDisplayed());
+        System.out.println("Login Step 5: Verify login successful");
+        verifyFalse(userHomePageObject.isMyAccountDisplayed());
 
-        log.info("Login - Step 06: Navigate to 'My Account page'");
         userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
     }
 

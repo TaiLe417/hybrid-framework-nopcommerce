@@ -55,7 +55,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
         adminPostSearchPO = adminDashboardPO.clickToPostMenuLink();
 
         log.info("Create Post - step 03: Get 'Search Pots' page Url");
-        searchPostUrl = adminPostSearchPO.getCurrentUrl(driver);
+        searchPostUrl = adminPostSearchPO.getCurrentUrl();
 
         log.info("Create Post - step 03: Click to 'Add' button");
         adminPostAddNewPO = adminPostSearchPO.clickToAddNewButton();
@@ -94,7 +94,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
         verifyTrue(adminPostSearchPO.isPostSearchTableDisplayed("author", authorName));
 
         log.info("Search - Step 06: Open End user site ");
-        userHomePO = adminPostSearchPO.openEndUserSite(driver, urlUser);
+        userHomePO = adminPostSearchPO.openEndUserSite(urlUser);
 
         log.info("Search - Step 07: Verify Post info displayed at Home Page");
         verifyTrue(userHomePO.isPostInfoDisplayedWithTitle(postTitle));
@@ -117,7 +117,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
     @Test
     public void Post_03_Edit_Post() {
         log.info("Edit_Post - Step 01: Open Admin site");
-        adminDashboardPO = userPostDetailPO.openAdminSite(driver, this.urlAdmin);
+        adminDashboardPO = userPostDetailPO.openAdminSite(this.urlAdmin);
 
         log.info("Edit_Post - Step 02: Click to 'Posts' menu link");
         adminPostSearchPO = adminDashboardPO.clickToPostMenuLink();
@@ -159,7 +159,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
         verifyTrue(adminPostSearchPO.isPostSearchTableDisplayed("author", authorName));
 
         log.info("Edit_Post - Step 15: Open End user site ");
-        userHomePO = adminPostSearchPO.openEndUserSite(driver, urlUser);
+        userHomePO = adminPostSearchPO.openEndUserSite(urlUser);
 
         log.info("Edit_Post - Step 16: Verify Post info displayed at Home Page");
         verifyTrue(userHomePO.isPostInfoDisplayedWithTitle(editPostTitle));
@@ -180,7 +180,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
     @Test
     public void Post_04_Delete_Post() {
         log.info("Delete_Post - Step 01: Open Admin site");
-        adminDashboardPO = userPostDetailPO.openAdminSite(driver, this.urlAdmin);
+        adminDashboardPO = userPostDetailPO.openAdminSite(this.urlAdmin);
 
         log.info("Delete_Post - Step 02: Click to 'Posts' menu link");
         adminPostSearchPO = adminDashboardPO.clickToPostMenuLink();
@@ -213,7 +213,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest {
         verifyTrue(adminPostSearchPO.isNoPostsFoundMessageDisplayed("No posts found."));
 
         log.info("Delete_Post - Step 12 : Open End user site");
-        userHomePO = adminPostSearchPO.openEndUserSite(driver, urlUser);
+        userHomePO = adminPostSearchPO.openEndUserSite(urlUser);
 
         log.info("Delete_Post - Step 13: Verify Post title undisplayed at Home Page");
         verifyTrue(userHomePO.isPostInfoUndisplayedWithTitle(editPostTitle));

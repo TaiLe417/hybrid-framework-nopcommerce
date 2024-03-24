@@ -1,7 +1,6 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
@@ -10,22 +9,20 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
-import pageObjects.nopCommerce.admin.AdminLoginPageObject;
-import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageObjects.nopCommerce.user.UserLoginPageObject;
-import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageObjects.nopCommerce.user.*;
 
 import java.time.Duration;
 
-public class Level_08_Switch_Role extends BaseTest {
+public class Level_07_Switch_Page extends BaseTest {
     private WebDriver driver;
-    private String userEmailAddress, firstName, lastName, userPassword, adminEmailAddress, adminPassword;
+    private String emailAddress, firstName, lastName, password;
     private UserHomePageObject userHomePageObject;
     private UserRegisterPageObject userRegisterPageObject;
     private UserLoginPageObject userLoginPageObject;
-    private AdminLoginPageObject adminLoginPageObject;
-    private AdminDashboardPageObject adminDashboardPageObject;
+    private UserCustomerInfoPageObject userCustomerInfoPageObject;
+    private UserAddressPageObject addressPage;
+    private UserMyProductReviewPageObject myProductsReviewPage;
+    private UserRewardPointPageObject rewardPointpage;
 
 
     @Parameters("browser")
@@ -36,29 +33,28 @@ public class Level_08_Switch_Role extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://demo.nopcommerce.com/");
 
-        userEmailAddress = faker.internet().emailAddress();
+        emailAddress = faker.internet().emailAddress();
         firstName = faker.name().firstName();
         lastName = faker.name().lastName();
-        userPassword = "123456";
-        adminEmailAddress = "admin@yourstore.com";
-        adminPassword = "admin";
+        password = "123456";
         userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
+
 
 //        System.out.println("Pre-condition Step 5: Log out");
 //        Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
     }
 
     @Test
-    public void TC_01_Register() {
+    public void User_01_Register() {
         System.out.println("Pre-condition Step 1: Click Register link");
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
         System.out.println("Pre-condition Step 2: Input data into textbox");
         userRegisterPageObject.inputToFirstNameTextbox(firstName);
         userRegisterPageObject.inputToLastNameTextbox(lastName);
-        userRegisterPageObject.inputToEmailTextbox(userEmailAddress);
-        userRegisterPageObject.inputToPasswordTextbox(userPassword);
-        userRegisterPageObject.inputToConfirmPasswordTextbox(userPassword);
+        userRegisterPageObject.inputToEmailTextbox(emailAddress);
+        userRegisterPageObject.inputToPasswordTextbox(password);
+        userRegisterPageObject.inputToConfirmPasswordTextbox(password);
 
         System.out.println("Pre-condition Step 3: Click register button");
         userRegisterPageObject.clickRegisterButton();
@@ -68,21 +64,47 @@ public class Level_08_Switch_Role extends BaseTest {
     }
 
     @Test
-    public void TC_02_User() {
+    public void User_02_Login() {
+        System.out.println("Login Step 1: Click log in link");
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
-        //Login as User role
-        userHomePageObject = userLoginPageObject.loginAsUser(userEmailAddress, userPassword);
+        System.out.println("Login Step 2: Input mail");
+        userLoginPageObject.inputToEmailTextBox(emailAddress);
+
+        System.out.println("Login Step 3: Input password");
+        userLoginPageObject.inputToPasswordTextBox(password);
+
+        System.out.println("Login Step 4: Click log in button");
+        userHomePageObject = userLoginPageObject.clickLogInButton();
+
+        System.out.println("Login Step 5: Verify login successful");
         Assert.assertTrue(userHomePageObject.isMyAccountDisplayed());
     }
 
     @Test
-    public void TC_03_Admin() {
-        userHomePageObject.openPageUrl(driver, GlobalConstants.ADMIN_URL);
-        adminLoginPageObject = PageGeneratorManager.getAdminLoginPageObject(driver);
+    public void User_03_MyAccount() {
+        userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
+    }
 
-        adminDashboardPageObject = adminLoginPageObject.loginAsAdmin(adminEmailAddress, adminPassword);
-        Assert.assertTrue(adminDashboardPageObject.isDashboardDisplayed());
+    @Test
+    public void User_04_Switch_Page() {
+        addressPage = userCustomerInfoPageObject.openAddressPage();
+
+        myProductsReviewPage = addressPage.openMyProductsReviewPage();
+
+        rewardPointpage = myProductsReviewPage.openRewardPointPage();
+
+        addressPage = rewardPointpage.openAddressPage();
+
+        rewardPointpage = addressPage.openRewardPointPage();
+
+        myProductsReviewPage = rewardPointpage.openMyProductsReviewPage();
+
+        addressPage = myProductsReviewPage.openAddressPage();
+    }
+
+    @Test
+    public void User_05_Switch_Role() {
     }
 
     @AfterClass

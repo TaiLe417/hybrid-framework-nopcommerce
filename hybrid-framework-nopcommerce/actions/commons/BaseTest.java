@@ -1,5 +1,6 @@
 package commons;
 
+import freemarker.core.Environment;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,7 +52,33 @@ public class BaseTest {
         return driver;
     }
 
-    protected WebDriver getBrowserName(String browserName, String url) {
+    protected String getEnvironment(String environmentName) {
+        String envUrl = null;
+        EnvironmentList environment = EnvironmentList.valueOf(environmentName);
+        switch (environment) {
+            case DEV:
+                envUrl = "https://demo.nopcommerce.com/";
+                break;
+            case TESTING:
+                envUrl = "";
+                break;
+            case STAGING:
+                envUrl = "";
+                break;
+            case PRE_PRO:
+                envUrl = "";
+                break;
+            case PROD:
+                envUrl = "";
+                break;
+            default:
+                envUrl = null;
+                break;
+        }
+        return envUrl;
+    }
+
+    protected WebDriver getBrowserName(String browserName, String environmentName) {
         if (browserName.equals("chrome")) {
             driver = WebDriverManager.chromedriver().create();
 //            WebDriverManager.chromedriver().create();
@@ -72,7 +99,7 @@ public class BaseTest {
             throw new RuntimeException("Browser Name Invalid");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
-        driver.get(url);
+        driver.get(getEnvironment(environmentName));
         return driver;
     }
 

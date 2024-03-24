@@ -4,9 +4,10 @@ import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 
 public class UserAddressPageObject extends BasePage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public UserAddressPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

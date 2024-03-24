@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPageObject extends BasePageFactory {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public LoginPageObject(WebDriver driver) {
         this.driver = driver;

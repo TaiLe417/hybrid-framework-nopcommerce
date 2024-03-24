@@ -35,7 +35,7 @@ public class Level_10_DataTable_DataGrid extends BaseTest {
 
     //    @Test
     public void Table_02_Enter_To_Header() {
-        homePageObject.refresh(driver);
+        homePageObject.refresh();
         homePageObject.enterToHeaderTextboxByLabel("Country", "Algeria");
         homePageObject.enterToHeaderTextboxByLabel("Females", "283821");
         homePageObject.enterToHeaderTextboxByLabel("Males", "295140");
@@ -44,7 +44,7 @@ public class Level_10_DataTable_DataGrid extends BaseTest {
 
     //    @Test
     public void Table_03() {
-        homePageObject.refresh(driver);
+        homePageObject.refresh();
         homePageObject.getValueEachRowAtAllPage();
     }
 

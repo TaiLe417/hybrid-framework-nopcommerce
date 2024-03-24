@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPageObject extends BasePageFactory {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public RegisterPageObject(WebDriver driver) {
         this.driver = driver;

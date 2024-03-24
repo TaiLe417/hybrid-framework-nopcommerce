@@ -7,6 +7,7 @@ public class AdminPostTagPO extends BasePage {
     WebDriver driver;
 
     public AdminPostTagPO(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 }

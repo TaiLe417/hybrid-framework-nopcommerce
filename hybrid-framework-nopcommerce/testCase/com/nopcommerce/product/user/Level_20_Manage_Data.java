@@ -1,5 +1,6 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
+import com.nopcommmerce.data.UserDataMapper;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import net.datafaker.Faker;
@@ -11,18 +12,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.*;
 
-import java.time.Duration;
-
-public class Level_18_Pattern_Object extends BaseTest {
+public class Level_20_Manage_Data extends BaseTest {
+    UserDataMapper userData;
     private WebDriver driver;
-    private String emailAddress, firstName, lastName, password, day, month, year;
+    private String emailAddress;
     private UserHomePageObject userHomePageObject;
     private UserRegisterPageObject userRegisterPageObject;
     private UserLoginPageObject userLoginPageObject;
     private UserCustomerInfoPageObject userCustomerInfoPageObject;
-    private UserAddressPageObject addressPage;
-    private UserMyProductReviewPageObject myProductsReviewPage;
-    private UserRewardPointPageObject rewardPointpage;
 
 
     @Parameters("browser")
@@ -30,19 +27,9 @@ public class Level_18_Pattern_Object extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserName(browserName);
         Faker faker = new Faker();
-
-        emailAddress = faker.internet().emailAddress();
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        password = "123456";
+        userData = UserDataMapper.getUserData();
         userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
-        day = "12";
-        month = "May";
-        year = "1995";
-
-
-//        System.out.println("Pre-condition Step 5: Log out");
-//        Assert.assertEquals(registerPageObject.getRegisterSuccessMessage(), "Your registration completed");
+        emailAddress = userData.getEmailAddress() + faker.number().randomNumber() + "@fakemail.com";
     }
 
     @Test
@@ -50,36 +37,36 @@ public class Level_18_Pattern_Object extends BaseTest {
         log.info("Register - Step 01: Navigate to 'Register' page");
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
-        userRegisterPageObject.clickToRadioButtonByLabel(driver,"Male");
+        userRegisterPageObject.clickToRadioButtonByLabel("Male");
 
-        log.info("Register - Step 02: Enter the Firstname textbox with value is '" + firstName + "'");
+        log.info("Register - Step 02: Enter the Firstname textbox with value is '" + userData.getFirstName() + "'");
 //        userRegisterPageObject.inputToFirstNameTextbox(firstName);
-        userRegisterPageObject.inputToTextboxByID(driver, "FirstName", firstName);
+        userRegisterPageObject.inputToTextboxByID("FirstName", userData.getFirstName());
 
-        log.info("Register - Step 03: Enter the Lastname textbox with value is '" + lastName + "'");
+        log.info("Register - Step 03: Enter the Lastname textbox with value is '" + userData.getLastName() + "'");
 //        userRegisterPageObject.inputToLastNameTextbox(lastName);
-        userRegisterPageObject.inputToTextboxByID(driver, "LastName", lastName);
+        userRegisterPageObject.inputToTextboxByID("LastName", userData.getLastName());
 
-        userRegisterPageObject.selectToDropDownByName(driver, "DateOfBirthDay", day);
-        userRegisterPageObject.selectToDropDownByName(driver, "DateOfBirthMonth", month);
-        userRegisterPageObject.selectToDropDownByName(driver, "DateOfBirthYear", year);
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthDay", userData.getDate());
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthMonth", userData.getMonth());
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthYear", userData.getYear());
 
         log.info("Register - Step 04: Enter the Email textbox with value is '" + emailAddress + "'");
 //        userRegisterPageObject.inputToEmailTextbox(emailAddress);
-        userRegisterPageObject.inputToTextboxByID(driver, "Email", emailAddress);
+        userRegisterPageObject.inputToTextboxByID("Email", emailAddress);
 
-        userRegisterPageObject.clickToCheckboxByLabel(driver,"Newsletter");
+        userRegisterPageObject.clickToCheckboxByLabel("Newsletter");
 
-        log.info("Register - Step 05: Enter the Password textbox with value is '" + password + "'");
+        log.info("Register - Step 05: Enter the Password textbox with value is '" + userData.getPassword() + "'");
 //        userRegisterPageObject.inputToPasswordTextbox(password);
-        userRegisterPageObject.inputToTextboxByID(driver, "Password", password);
+        userRegisterPageObject.inputToTextboxByID("Password", userData.getPassword());
 
-        log.info("Register - Step 06: Enter the Confirm Password textbox with value is '" + password + "'");
+        log.info("Register - Step 06: Enter the Confirm Password textbox with value is '" + userData.getPassword() + "'");
 //        userRegisterPageObject.inputToConfirmPasswordTextbox(password);
-        userRegisterPageObject.inputToTextboxByID(driver, "ConfirmPassword", password);
+        userRegisterPageObject.inputToTextboxByID("ConfirmPassword", userData.getPassword());
 
         log.info("Register - Step 07: Click to 'Register button'");
-        userRegisterPageObject.clickToButtonByText(driver, "Register");
+        userRegisterPageObject.clickToButtonByText("Register");
 
         log.info("Register - Step 08: Verify register success message is displayed");
         verifyEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed");
@@ -92,13 +79,13 @@ public class Level_18_Pattern_Object extends BaseTest {
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
         log.info("Login - Step 02: enter the Email textbox with value is '" + emailAddress + "'");
-        userLoginPageObject.inputToTextboxByID(driver, "Email", emailAddress);
+        userLoginPageObject.inputToTextboxByID("Email", emailAddress);
 
-        log.info("Login - Step 03: enter the Password textbox with value is '" + password + "'");
-        userLoginPageObject.inputToTextboxByID(driver, "Password", password);
+        log.info("Login - Step 03: enter the Password textbox with value is '" + userData.getPassword() + "'");
+        userLoginPageObject.inputToTextboxByID("Password", userData.getPassword());
 
         log.info("Login - Step 04: Click Log In button");
-        userLoginPageObject.clickToButtonByText(driver, "Log in");
+        userLoginPageObject.clickToButtonByText("Log in");
         userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
 
 
@@ -117,13 +104,13 @@ public class Level_18_Pattern_Object extends BaseTest {
         Assert.assertTrue(userCustomerInfoPageObject.isCustomerInfoDisplayed());
 
         log.info("My Account - Step 03: Verify 'First Name' value is correctly");
-        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID(driver,"FirstName"), firstName);
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("FirstName"), userData.getFirstName());
 
         log.info("My Account - Step 04: Verify 'Last Name' value is correctly");
-        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID(driver,"LastName"), lastName);
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("LastName"), userData.getLastName());
 
         log.info("My Account - Step 01:  Verify 'Email' value is correctly");
-        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID(driver,"Email"), emailAddress);
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("Email"), emailAddress);
 
     }
 

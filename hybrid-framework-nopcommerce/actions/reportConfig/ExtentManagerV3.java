@@ -12,11 +12,11 @@ import org.openqa.selenium.Platform;
 public class ExtentManagerV3 {
 //    private static ExtentReports extent;
     private static Platform platform;
-    private static String reportFileName = "ExtentReport.html";
-    private static String macPath = System.getProperty("user.dir") + "/hybrid-framework-nopcommerce/extentReportV3";
-    private static String windowsPath = System.getProperty("user.dir") + "\\hybrid-framework-nopcommerce\\extentReportV3";
-    private static String macReportFileLoc = macPath + "/" + reportFileName;
-    private static String winReportFileLoc = windowsPath + "\\" + reportFileName;
+    private static final String reportFileName = "ExtentReport.html";
+    private static final String macPath = System.getProperty("user.dir") + "/hybrid-framework-nopcommerce/extentReportV3";
+    private static final String windowsPath = System.getProperty("user.dir") + "\\hybrid-framework-nopcommerce\\extentReportV3";
+    private static final String macReportFileLoc = macPath + "/" + reportFileName;
+    private static final String winReportFileLoc = windowsPath + "\\" + reportFileName;
 
 
 //    public static ExtentReports getInstance() {

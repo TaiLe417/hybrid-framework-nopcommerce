@@ -7,6 +7,7 @@ public class AdminPostCategoriesPO extends BasePage {
     WebDriver driver;
 
     public AdminPostCategoriesPO(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 }

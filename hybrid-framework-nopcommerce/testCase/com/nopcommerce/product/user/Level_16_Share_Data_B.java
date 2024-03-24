@@ -1,10 +1,9 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 import com.nopcommerce.common.Common_01_Register_Cookie;
 import com.nopcommerce.common.Common_01_Register_End_User;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,8 +11,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
-
-import java.util.Set;
 
 public class Level_16_Share_Data_B extends BaseTest {
     private WebDriver driver;
@@ -36,7 +33,7 @@ public class Level_16_Share_Data_B extends BaseTest {
 
         log.info("Pre-condition - Step 02: Set cookie and reload");
         userLoginPageObject.setCookies(driver, Common_01_Register_Cookie.loggedCookies);
-        userLoginPageObject.refresh(driver);
+        userLoginPageObject.refresh();
 
         log.info("Pre-condition - Step 03: Verify 'My Account' link is displayed");
         verifyTrue(userHomePageObject.isMyAccountDisplayed());

@@ -1,5 +1,6 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
+//import com.relevantcodes.extentreports.LogStatus;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import net.datafaker.Faker;
@@ -11,9 +12,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.*;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
-public class Level_07_Switch_Page extends BaseTest {
+public class Level_15_ExtendV4 extends BaseTest {
     private WebDriver driver;
     private String emailAddress, firstName, lastName, password;
     private UserHomePageObject userHomePageObject;
@@ -45,66 +47,37 @@ public class Level_07_Switch_Page extends BaseTest {
     }
 
     @Test
-    public void User_01_Register() {
-        System.out.println("Pre-condition Step 1: Click Register link");
+    public void User_01_Register(Method method) {
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
-        System.out.println("Pre-condition Step 2: Input data into textbox");
         userRegisterPageObject.inputToFirstNameTextbox(firstName);
+
         userRegisterPageObject.inputToLastNameTextbox(lastName);
+
         userRegisterPageObject.inputToEmailTextbox(emailAddress);
+
         userRegisterPageObject.inputToPasswordTextbox(password);
+
         userRegisterPageObject.inputToConfirmPasswordTextbox(password);
 
-        System.out.println("Pre-condition Step 3: Click register button");
         userRegisterPageObject.clickRegisterButton();
 
-        System.out.println("Pre-condition Step 4: Verify register success message displayed");
         Assert.assertEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed");
     }
 
     @Test
-    public void User_02_Login() {
-        System.out.println("Login Step 1: Click log in link");
+    public void User_02_Login(Method method) {
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
-        System.out.println("Login Step 2: Input mail");
         userLoginPageObject.inputToEmailTextBox(emailAddress);
 
-        System.out.println("Login Step 3: Input password");
         userLoginPageObject.inputToPasswordTextBox(password);
 
-        System.out.println("Login Step 4: Click log in button");
         userHomePageObject = userLoginPageObject.clickLogInButton();
 
-        System.out.println("Login Step 5: Verify login successful");
-        Assert.assertTrue(userHomePageObject.isMyAccountDisplayed());
-    }
+        Assert.assertFalse(userHomePageObject.isMyAccountDisplayed());
 
-    @Test
-    public void User_03_MyAccount() {
         userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
-    }
-
-    @Test
-    public void User_04_Switch_Page() {
-        addressPage = userCustomerInfoPageObject.openAddressPage(driver);
-
-        myProductsReviewPage = addressPage.openMyProductsReviewPage(driver);
-
-        rewardPointpage = myProductsReviewPage.openRewardPointPage(driver);
-
-        addressPage = rewardPointpage.openAddressPage(driver);
-
-        rewardPointpage = addressPage.openRewardPointPage(driver);
-
-        myProductsReviewPage = rewardPointpage.openMyProductsReviewPage(driver);
-
-        addressPage = myProductsReviewPage.openAddressPage(driver);
-    }
-
-    @Test
-    public void User_05_Switch_Role() {
     }
 
     @AfterClass

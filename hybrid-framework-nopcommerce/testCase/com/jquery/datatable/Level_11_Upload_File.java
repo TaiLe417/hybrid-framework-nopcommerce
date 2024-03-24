@@ -32,7 +32,7 @@ public class Level_11_Upload_File extends BaseTest {
     @Test
     public void Upload_01_One_File_Per_Time() {
         //Log single file
-        homePageObject.uploadFile(driver, beachFileName);
+        homePageObject.uploadFile(beachFileName);
         //Verify file loaded success
         Assert.assertTrue(homePageObject.isFileLoadedByName(beachFileName));
         //click to start button
@@ -45,9 +45,9 @@ public class Level_11_Upload_File extends BaseTest {
 
     @Test
     public void Upload_02_Multiple_Files_Per_Time() {
-        homePageObject.refresh(driver);
+        homePageObject.refresh();
         //Log multi file
-        homePageObject.uploadFile(driver, multipleFileNames);
+        homePageObject.uploadFile(multipleFileNames);
         //Verify file loaded success
         Assert.assertTrue(homePageObject.isFileLoadedByName(beachFileName));
         Assert.assertTrue(homePageObject.isFileLoadedByName(carFileName));

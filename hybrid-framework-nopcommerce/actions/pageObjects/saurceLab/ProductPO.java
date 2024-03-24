@@ -13,12 +13,13 @@ public class ProductPO extends BasePage {
     WebDriver driver;
 
     public ProductPO(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
     public void selectItemInProductSortDropdown(String value) {
-        waitForElementClickable(driver, ProductPageUI.SORT_ITEM_DROPDOWN);
-        selectItemInDefaultDropDown(driver, ProductPageUI.SORT_ITEM_DROPDOWN, value);
+        waitForElementClickable(ProductPageUI.SORT_ITEM_DROPDOWN);
+        selectItemInDefaultDropDown(ProductPageUI.SORT_ITEM_DROPDOWN, value);
     }
 
     public boolean isProductNameSortByAscending() {
@@ -26,7 +27,7 @@ public class ProductPO extends BasePage {
         ArrayList<String> productUIList = new ArrayList<String>();
 
         //Lấy ra hết tất cả các text product name
-        List<WebElement> productNameText = getElements(driver, ProductPageUI.PRODUCT_NAME);
+        List<WebElement> productNameText = getElements(ProductPageUI.PRODUCT_NAME);
 
         //Dùng vòng lặp để getText và add vào ArrayList trên
         for (WebElement productName : productNameText) {
@@ -50,7 +51,7 @@ public class ProductPO extends BasePage {
         ArrayList<String> productUIList = new ArrayList<String>();
 
         //Lấy ra hết tất cả các text product name
-        List<WebElement> productNameText = getElements(driver, ProductPageUI.PRODUCT_NAME);
+        List<WebElement> productNameText = getElements(ProductPageUI.PRODUCT_NAME);
 
         //Dùng vòng lặp để getText và add vào ArrayList trên
         for (WebElement productName : productNameText) {
@@ -76,7 +77,7 @@ public class ProductPO extends BasePage {
         ArrayList<Float> productUIList = new ArrayList<Float>();
 
         //Lấy ra hết tất cả các text product name
-        List<WebElement> productPriceText = getElements(driver, ProductPageUI.PRODUCT_PRICE);
+        List<WebElement> productPriceText = getElements(ProductPageUI.PRODUCT_PRICE);
 
         //Dùng vòng lặp để getText và add vào ArrayList trên
         for (WebElement productPrice : productPriceText) {
@@ -99,7 +100,7 @@ public class ProductPO extends BasePage {
         ArrayList<Float> productUIList = new ArrayList<Float>();
 
         //Lấy ra hết tất cả các text product name
-        List<WebElement> productNameText = getElements(driver, ProductPageUI.PRODUCT_PRICE);
+        List<WebElement> productNameText = getElements(ProductPageUI.PRODUCT_PRICE);
 
         //Dùng vòng lặp để getText và add vào ArrayList trên
         for (WebElement productName : productNameText) {

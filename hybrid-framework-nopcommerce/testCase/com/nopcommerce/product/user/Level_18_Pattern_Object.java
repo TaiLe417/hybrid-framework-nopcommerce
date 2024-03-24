@@ -1,20 +1,19 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.*;
 
-import java.time.Duration;
-
-public class Level_14_Log_ReportNG extends BaseTest {
+public class Level_18_Pattern_Object extends BaseTest {
     private WebDriver driver;
-    private String emailAddress, firstName, lastName, password;
+    private String emailAddress, firstName, lastName, password, day, month, year;
     private UserHomePageObject userHomePageObject;
     private UserRegisterPageObject userRegisterPageObject;
     private UserLoginPageObject userLoginPageObject;
@@ -29,14 +28,15 @@ public class Level_14_Log_ReportNG extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserName(browserName);
         Faker faker = new Faker();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("https://demo.nopcommerce.com/");
 
         emailAddress = faker.internet().emailAddress();
         firstName = faker.name().firstName();
         lastName = faker.name().lastName();
         password = "123456";
         userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
+        day = "12";
+        month = "May";
+        year = "1995";
 
 
 //        System.out.println("Pre-condition Step 5: Log out");
@@ -48,27 +48,39 @@ public class Level_14_Log_ReportNG extends BaseTest {
         log.info("Register - Step 01: Navigate to 'Register' page");
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
+        userRegisterPageObject.clickToRadioButtonByLabel("Male");
+
         log.info("Register - Step 02: Enter the Firstname textbox with value is '" + firstName + "'");
-        userRegisterPageObject.inputToFirstNameTextbox(firstName);
+//        userRegisterPageObject.inputToFirstNameTextbox(firstName);
+        userRegisterPageObject.inputToTextboxByID("FirstName", firstName);
 
         log.info("Register - Step 03: Enter the Lastname textbox with value is '" + lastName + "'");
-        userRegisterPageObject.inputToLastNameTextbox(lastName);
+//        userRegisterPageObject.inputToLastNameTextbox(lastName);
+        userRegisterPageObject.inputToTextboxByID("LastName", lastName);
+
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthDay", day);
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthMonth", month);
+        userRegisterPageObject.selectToDropDownByName("DateOfBirthYear", year);
 
         log.info("Register - Step 04: Enter the Email textbox with value is '" + emailAddress + "'");
-        userRegisterPageObject.inputToEmailTextbox(emailAddress);
+//        userRegisterPageObject.inputToEmailTextbox(emailAddress);
+        userRegisterPageObject.inputToTextboxByID("Email", emailAddress);
+
+        userRegisterPageObject.clickToCheckboxByLabel("Newsletter");
 
         log.info("Register - Step 05: Enter the Password textbox with value is '" + password + "'");
-        userRegisterPageObject.inputToPasswordTextbox(password);
+//        userRegisterPageObject.inputToPasswordTextbox(password);
+        userRegisterPageObject.inputToTextboxByID("Password", password);
 
         log.info("Register - Step 06: Enter the Confirm Password textbox with value is '" + password + "'");
-        userRegisterPageObject.inputToConfirmPasswordTextbox(password);
+//        userRegisterPageObject.inputToConfirmPasswordTextbox(password);
+        userRegisterPageObject.inputToTextboxByID("ConfirmPassword", password);
 
         log.info("Register - Step 07: Click to 'Register button'");
-        userRegisterPageObject.clickRegisterButton();
+        userRegisterPageObject.clickToButtonByText("Register");
 
         log.info("Register - Step 08: Verify register success message is displayed");
         verifyEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed");
-
     }
 
     @Test
@@ -78,23 +90,43 @@ public class Level_14_Log_ReportNG extends BaseTest {
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
         log.info("Login - Step 02: enter the Email textbox with value is '" + emailAddress + "'");
-        userLoginPageObject.inputToEmailTextBox(emailAddress);
+        userLoginPageObject.inputToTextboxByID("Email", emailAddress);
 
         log.info("Login - Step 03: enter the Password textbox with value is '" + password + "'");
-        userLoginPageObject.inputToPasswordTextBox(password);
+        userLoginPageObject.inputToTextboxByID("Password", password);
 
         log.info("Login - Step 04: Click Log In button");
-        userHomePageObject = userLoginPageObject.clickLogInButton();
+        userLoginPageObject.clickToButtonByText("Log in");
+        userHomePageObject = PageGeneratorManager.getUserHomePageObject(driver);
+
 
         log.info("Login - Step 05: Verify 'My Account' link is displayed");
-        verifyFalse(userHomePageObject.isMyAccountDisplayed());
+        verifyTrue(userHomePageObject.isMyAccountDisplayed());
 
-        log.info("Login - Step 06: Navigate to 'My Account page'");
-        userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
+
     }
 
-    @AfterClass
+    @Test
+    public void User_03_MyAccount() {
+        log.info("My Account - Step 01: Navigate to 'My Account page'");
+        userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
+
+        log.info("My Account - Step 02: Customer Info page is displayed");
+        Assert.assertTrue(userCustomerInfoPageObject.isCustomerInfoDisplayed());
+
+        log.info("My Account - Step 03: Verify 'First Name' value is correctly");
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("FirstName"), firstName);
+
+        log.info("My Account - Step 04: Verify 'Last Name' value is correctly");
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("LastName"), lastName);
+
+        log.info("My Account - Step 01:  Verify 'Email' value is correctly");
+        Assert.assertEquals(userCustomerInfoPageObject.getTextboxValueByID("Email"), emailAddress);
+
+    }
+
+    @AfterClass(alwaysRun = true)
     public void afterClass() {
-        driver.quit();
+        closeBrowserDriver();
     }
 }

@@ -1,4 +1,4 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 //import com.relevantcodes.extentreports.LogStatus;
 import com.aventstack.extentreports.Status;

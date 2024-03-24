@@ -69,7 +69,7 @@ public class Common_01_Register_Cookie extends BaseTest {
         log.info("Pre-condition - Step 12: Click Log In button");
         userHomePageObject = userLoginPageObject.clickLogInButton();
 
-        loggedCookies = userHomePageObject.getAllCookies(driver);
+        loggedCookies = userHomePageObject.getAllCookies();
 
     }
 

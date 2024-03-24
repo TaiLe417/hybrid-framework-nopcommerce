@@ -12,11 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class BasePageFactory {
-    private long longTimeout = 30;
-
-    protected static BasePage getBasePageObject() {
-        return new BasePage();
-    }
+    private final long longTimeout = 30;
 
     protected void openPageUrl(WebDriver driver, String url) {
         driver.get(url);

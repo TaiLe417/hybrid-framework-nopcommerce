@@ -1,4 +1,4 @@
-package com.nopcommerce.user;
+package com.nopcommerce.product.user;
 
 import com.nopcommerce.common.Common_01_Register_End_User;
 import commons.BaseTest;
