@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="testng-7.5.1 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/lib/testng-7.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
