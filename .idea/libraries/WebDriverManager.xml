@@ -21,7 +21,6 @@
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-annotations-2.10.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-core-2.10.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jackson-databind-2.10.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jcl-over-slf4j-1.7.30.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/jna-5.13.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/slf4j-api-2.0.12.jar!/" />
       <root url="jar://$PROJECT_DIR$/hybrid-framework-nopcommerce/libWebDriverManager/webdrivermanager-5.7.0.jar!/" />
