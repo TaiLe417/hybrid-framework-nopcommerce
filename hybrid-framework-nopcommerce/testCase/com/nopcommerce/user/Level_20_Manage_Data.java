@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import com.nopcommmerce.data.UserDataMapper;
 import commons.BaseTest;

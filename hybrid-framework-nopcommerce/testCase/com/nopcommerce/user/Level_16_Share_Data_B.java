@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import com.nopcommerce.common.Common_01_Register_Cookie;
 import com.nopcommerce.common.Common_01_Register_End_User;

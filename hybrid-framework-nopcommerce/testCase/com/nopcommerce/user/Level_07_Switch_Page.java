@@ -1,9 +1,10 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -12,7 +13,7 @@ import pageObjects.nopCommerce.user.*;
 
 import java.time.Duration;
 
-public class Level_14_Log_ReportNG extends BaseTest {
+public class Level_07_Switch_Page extends BaseTest {
     private WebDriver driver;
     private String emailAddress, firstName, lastName, password;
     private UserHomePageObject userHomePageObject;
@@ -45,52 +46,65 @@ public class Level_14_Log_ReportNG extends BaseTest {
 
     @Test
     public void User_01_Register() {
-        log.info("Register - Step 01: Navigate to 'Register' page");
+        System.out.println("Pre-condition Step 1: Click Register link");
         userRegisterPageObject = userHomePageObject.clickRegisterLink();
 
-        log.info("Register - Step 02: Enter the Firstname textbox with value is '" + firstName + "'");
+        System.out.println("Pre-condition Step 2: Input data into textbox");
         userRegisterPageObject.inputToFirstNameTextbox(firstName);
-
-        log.info("Register - Step 03: Enter the Lastname textbox with value is '" + lastName + "'");
         userRegisterPageObject.inputToLastNameTextbox(lastName);
-
-        log.info("Register - Step 04: Enter the Email textbox with value is '" + emailAddress + "'");
         userRegisterPageObject.inputToEmailTextbox(emailAddress);
-
-        log.info("Register - Step 05: Enter the Password textbox with value is '" + password + "'");
         userRegisterPageObject.inputToPasswordTextbox(password);
-
-        log.info("Register - Step 06: Enter the Confirm Password textbox with value is '" + password + "'");
         userRegisterPageObject.inputToConfirmPasswordTextbox(password);
 
-        log.info("Register - Step 07: Click to 'Register button'");
+        System.out.println("Pre-condition Step 3: Click register button");
         userRegisterPageObject.clickRegisterButton();
 
-        log.info("Register - Step 08: Verify register success message is displayed");
-        verifyEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed");
-
+        System.out.println("Pre-condition Step 4: Verify register success message displayed");
+        Assert.assertEquals(userRegisterPageObject.getRegisterSuccessMessage(), "Your registration completed");
     }
 
     @Test
     public void User_02_Login() {
-
-        log.info("Login - Step 01:  Navigate to Login page");
+        System.out.println("Login Step 1: Click log in link");
         userLoginPageObject = userHomePageObject.clickLogInLink();
 
-        log.info("Login - Step 02: enter the Email textbox with value is '" + emailAddress + "'");
+        System.out.println("Login Step 2: Input mail");
         userLoginPageObject.inputToEmailTextBox(emailAddress);
 
-        log.info("Login - Step 03: enter the Password textbox with value is '" + password + "'");
+        System.out.println("Login Step 3: Input password");
         userLoginPageObject.inputToPasswordTextBox(password);
 
-        log.info("Login - Step 04: Click Log In button");
+        System.out.println("Login Step 4: Click log in button");
         userHomePageObject = userLoginPageObject.clickLogInButton();
 
-        log.info("Login - Step 05: Verify 'My Account' link is displayed");
-        verifyFalse(userHomePageObject.isMyAccountDisplayed());
+        System.out.println("Login Step 5: Verify login successful");
+        Assert.assertTrue(userHomePageObject.isMyAccountDisplayed());
+    }
 
-        log.info("Login - Step 06: Navigate to 'My Account page'");
+    @Test
+    public void User_03_MyAccount() {
         userCustomerInfoPageObject = userHomePageObject.clickToMyAccountLink();
+    }
+
+    @Test
+    public void User_04_Switch_Page() {
+        addressPage = userCustomerInfoPageObject.openAddressPage();
+
+        myProductsReviewPage = addressPage.openMyProductsReviewPage();
+
+        rewardPointpage = myProductsReviewPage.openRewardPointPage();
+
+        addressPage = rewardPointpage.openAddressPage();
+
+        rewardPointpage = addressPage.openRewardPointPage();
+
+        myProductsReviewPage = rewardPointpage.openMyProductsReviewPage();
+
+        addressPage = myProductsReviewPage.openAddressPage();
+    }
+
+    @Test
+    public void User_05_Switch_Role() {
     }
 
     @AfterClass

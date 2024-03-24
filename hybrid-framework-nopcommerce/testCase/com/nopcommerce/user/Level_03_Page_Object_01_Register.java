@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;

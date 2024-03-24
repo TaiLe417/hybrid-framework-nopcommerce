@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import com.nopcommmerce.data.UserDataMapper;
 import commons.BaseTest;
@@ -15,7 +15,7 @@ import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class Level_21_Multiple_Environment_Parameter extends BaseTest {
+public class Level_22_Multiple_Environment_Owner extends BaseTest {
     UserDataMapper userData;
     private WebDriver driver;
     private String emailAddress;

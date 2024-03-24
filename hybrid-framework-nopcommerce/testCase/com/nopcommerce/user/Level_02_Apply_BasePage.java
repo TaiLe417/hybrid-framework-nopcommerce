@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 import commons.BasePage;
 import net.datafaker.Faker;

@@ -1,4 +1,4 @@
-package com.nopcommerce.product.user;
+package com.nopcommerce.user;
 
 //import com.relevantcodes.extentreports.LogStatus;
 import commons.BaseTest;
@@ -15,7 +15,7 @@ import pageObjects.nopCommerce.user.*;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
-public class Level_15_ExtendV3_Screenshot extends BaseTest {
+public class Level_15_ExtendV4 extends BaseTest {
     private WebDriver driver;
     private String emailAddress, firstName, lastName, password;
     private UserHomePageObject userHomePageObject;
