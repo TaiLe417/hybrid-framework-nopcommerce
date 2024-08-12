@@ -480,11 +480,11 @@ public class BasePage {
     }
 
 
-    public UserAddressPageObject openAddressPage() {
-        waitForElementClickable(UserBasePageUI.ADDRESS_LINK);
-        clickToElement(UserBasePageUI.ADDRESS_LINK);
-        return PageGeneratorManager.getUserAddressPageObject(driver);
-    }
+        public UserAddressPageObject openAddressPage() {
+            waitForElementClickable(UserBasePageUI.ADDRESS_LINK);
+            clickToElement(UserBasePageUI.ADDRESS_LINK);
+            return PageGeneratorManager.getUserAddressPageObject(driver);
+        }
 
     public UserMyProductReviewPageObject openMyProductsReviewPage() {
         waitForElementClickable(UserBasePageUI.MY_PRODUCT_REVIEWS_LINK);

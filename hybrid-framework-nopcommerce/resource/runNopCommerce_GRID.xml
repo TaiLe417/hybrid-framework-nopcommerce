@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="NopCommerce">
+    <listeners>
+        <listener class-name="commons.MethodListener"/>
+        <!--&lt;!&ndash;                <listener class-name="reportConfig.ReportNGListener"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="reportConfig.ExtentTestListenerV5"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="org.uncommons.reportng.HTMLReporter"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>&ndash;&gt;-->
+
+        <!--        <listener class-name="reportConfig.AllureTestListener"/>-->
+
+    </listeners>
+    <test name="Run on Chrome">
+        <parameter name="browser" value="chrome" />
+        <parameter name="environment" value="DEV" />
+        <parameter name="osName" value="windows" />
+        <parameter name="ipAddress" value="192.168.1.9" />
+        <parameter name="port" value="6666" />
+        <classes>
+            <class name="com.nopcommerce.grid.Level_23_Grid" />
+        </classes>
+    </test>
+</suite>

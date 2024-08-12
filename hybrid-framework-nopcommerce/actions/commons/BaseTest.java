@@ -6,19 +6,26 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private WebDriver driver;
@@ -103,6 +110,56 @@ public class BaseTest {
         return driver;
     }
 
+    protected WebDriver getBrowserNameGrid(String browserName, String environmentName, String osName, String ipAddress, String port) {
+        DesiredCapabilities capability = new DesiredCapabilities();
+        Platform platform = null;
+
+        if (osName.contains("windows")) {
+            platform = Platform.WINDOWS;
+        } else {
+            platform = Platform.MAC;
+        }
+
+        switch (browserName) {
+            case "firefox":
+//                capability = DesiredCapabilities
+                capability.setBrowserName("firefox");
+                capability.setPlatform(platform);
+
+                FirefoxOptions fOptions = new FirefoxOptions();
+                fOptions.merge(capability);
+                break;
+            case "chrome":
+//                capability = DesiredCapabilities.();
+                capability.setBrowserName("chrome");
+                capability.setPlatform(platform);
+
+                ChromeOptions cOptions = new ChromeOptions();
+                cOptions.merge(capability);
+                break;
+            case "edge":
+//                capability = DesiredCapabilities.edge();
+                capability.setBrowserName("edge");
+                capability.setPlatform(platform);
+
+                EdgeOptions eOptions = new EdgeOptions();
+                eOptions.merge(capability);
+                break;
+            default:
+                throw new RuntimeException("Browser is not valid!");
+        }
+
+        try {
+            driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub", ipAddress, port)), capability);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        driver.get(getEnvironment(environmentName));
+        return driver;
+    }
+
     public WebDriver getDriverInstance() {
         return this.driver;
     }
@@ -150,22 +207,22 @@ public class BaseTest {
         return pass;
     }
 
-    public void deleteAllFileInFolder(String folderName) {
-        try {
-            String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + "hybrid-framework-nopcommerce" + File.separator + folderName;
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
-            if (listOfFiles.length != 0) {
-                for (int i = 0; i < listOfFiles.length; i++) {
-                    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
-                        new File(listOfFiles[i].toString()).delete();
+        public void deleteAllFileInFolder(String folderName) {
+            try {
+                String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + "hybrid-framework-nopcommerce" + File.separator + folderName;
+                File file = new File(pathFolderDownload);
+                File[] listOfFiles = file.listFiles();
+                if (listOfFiles.length != 0) {
+                    for (int i = 0; i < listOfFiles.length; i++) {
+                        if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
+                            new File(listOfFiles[i].toString()).delete();
+                        }
                     }
                 }
+            } catch (Exception e) {
+                System.out.print(e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
         }
-    }
 
     protected void closeBrowserDriver() {
         String cmd = null;

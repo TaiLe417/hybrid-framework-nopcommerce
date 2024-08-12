@@ -2,19 +2,19 @@
 <suite name="NopCommerce">
     <listeners>
         <listener class-name="commons.MethodListener"/>
-<!--                <listener class-name="reportConfig.ReportNGListener"/>-->
-<!--                <listener class-name="reportConfig.ExtentTestListenerV5"/>-->
-<!--                <listener class-name="org.uncommons.reportng.HTMLReporter"/>-->
-<!--                <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>-->
+        <!--&lt;!&ndash;                <listener class-name="reportConfig.ReportNGListener"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="reportConfig.ExtentTestListenerV5"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="org.uncommons.reportng.HTMLReporter"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>&ndash;&gt;-->
 
-        <listener class-name="reportConfig.AllureTestListener"/>
+        <!--        <listener class-name="reportConfig.AllureTestListener"/>-->
 
     </listeners>
     <test name="Run on Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
             <!--            <class name="com.nopcommerce.common.Common_01_Register_Cookie"/>-->
-            <class name="com.nopcommerce.user.Level_20_Manage_Data"/>
+            <class name="com.nopcommerce.grid.Level_23_Local"/>
         </classes>
     </test>
 </suite>

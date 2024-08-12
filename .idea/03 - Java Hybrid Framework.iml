@@ -22,5 +22,7 @@
     <orderEntry type="library" name="ExtentV5" level="project" />
     <orderEntry type="library" name="allure" level="project" />
     <orderEntry type="library" name="joda-time-2.0 (2)" level="project" />
+    <orderEntry type="library" name="libJDBC" level="project" />
+    <orderEntry type="library" name="selenium-server-4.19.1" level="project" />
   </component>
 </module>
